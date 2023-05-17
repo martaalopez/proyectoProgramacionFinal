@@ -3,14 +3,15 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="498.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prueba100.shop">
+<AnchorPane prefHeight="498.0" prefWidth="730.0" style="-fx-background-color: #b7e8e0;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prueba100.shop">
    <children>
-      <TableView fx:id="tablaProductos" layoutX="51.0" layoutY="203.0" prefHeight="176.0" prefWidth="585.0">
+      <TableView fx:id="tablaProductos" layoutX="336.0" layoutY="127.0" prefHeight="210.0" prefWidth="244.0">
         <columns>
-          <TableColumn fx:id="colidProduct" prefWidth="196.79999160766602" text="Id Product" />
-            <TableColumn fx:id="colunidades" minWidth="0.0" prefWidth="195.1999969482422" text="Units" />
-            <TableColumn fx:id="colpedido" minWidth="0.0" prefWidth="193.5999755859375" text="Id cliente" />
+          <TableColumn fx:id="colidProduct" prefWidth="133.80000686645508" text="Id Product" />
+            <TableColumn fx:id="colunidades" minWidth="0.0" prefWidth="110.80000305175781" text="Units" />
+            <TableColumn fx:id="colpedido" minWidth="0.0" prefWidth="342.0" text="Id cliente" />
         </columns>
       </TableView>
        <HBox layoutX="51.0" layoutY="355.0" prefHeight="110.0" prefWidth="304.0">
@@ -20,21 +21,26 @@
            <padding>
                <Insets bottom="50.0" right="50.0" top="50.0" />
            </padding>
-           <Label text="TOTAL" />
-           <Label fx:id="lblTotal" text="\$0.00" />
+           <Label text="TOTAL" textFill="#200c0c">
+            <font>
+               <Font size="23.0" />
+            </font></Label>
+           <Label fx:id="lblTotal" prefHeight="39.0" prefWidth="67.0" text="\$0.00">
+            <font>
+               <Font size="23.0" />
+            </font></Label>
        </HBox>
-      <Label layoutX="52.0" layoutY="65.0" text="Id Product" />
-      <Label layoutX="52.0" layoutY="129.0" text="Unit" />
-      <TextField fx:id="txtUnidades" layoutX="51.0" layoutY="157.0" />
-      <Button fx:id="add" layoutX="529.0" layoutY="401.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="40.0" prefWidth="78.0" text="Add" />
+      <Label layoutX="50.0" layoutY="93.0" text="Products" />
+      <Label layoutX="56.0" layoutY="168.0" text="Unit" />
+      <TextField fx:id="txtUnidades" layoutX="51.0" layoutY="203.0" />
+      <Button fx:id="add" layoutX="442.0" layoutY="382.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="40.0" prefWidth="136.0" text="Add" />
       <ToolBar layoutX="43.0" layoutY="14.0" prefHeight="40.0" prefWidth="600.0">
         <items>
           <Button fx:id="menu" mnemonicParsing="false" onAction="#goToMenu" text="Menu" />
-            <Button mnemonicParsing="false" text="Button" />
         </items>
       </ToolBar>
-      <ComboBox fx:id="productCombo" layoutX="51.0" layoutY="85.0" prefWidth="150.0" />
-      <ComboBox fx:id="clientCombo" layoutX="355.0" layoutY="85.0" prefWidth="150.0" />
-      <Label layoutX="365.0" layoutY="65.0" text="Cliente" />
+      <ComboBox fx:id="productCombo" layoutX="50.0" layoutY="124.0" prefWidth="150.0" />
+      <ComboBox fx:id="clientCombo" layoutX="51.0" layoutY="294.0" prefWidth="150.0" />
+      <Label layoutX="56.0" layoutY="256.0" text="Cliente" />
    </children>
 </AnchorPane>
