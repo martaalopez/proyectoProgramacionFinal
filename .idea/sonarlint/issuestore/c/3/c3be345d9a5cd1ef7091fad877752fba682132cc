@@ -1,0 +1,28 @@
+
+g	java:S112o"FDefine and throw a dedicated exception instead of using a generic one.(©Ú³ëùÿÿÿÿ8¼êø€1
+i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(¼ŒÕ8¾êø€1
+m
+java:S3655e"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ôÇ8Şêø€1
+R
+java:S2209U"5Change this instance-reference to a static reference.(‰÷ÆŸ8äêø€1
+o	java:S100`"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Êâ€ëùÿÿÿÿ8çêø€1
+W
+java:S2209h"5Change this instance-reference to a static reference.(™Ã¨®ùÿÿÿÿ8éêø€1
+o	java:S100o"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©Ú³ëùÿÿÿÿ8éêø€1
+W
+java:S2209{"5Change this instance-reference to a static reference.(óõ¬Ìûÿÿÿÿ8íêø€1
+X
+java:S2209†"5Change this instance-reference to a static reference.(óõ¬Ìûÿÿÿÿ8îêø€1
+p	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÕ°Æıÿÿÿÿ8ïêø€1
+S
+java:S2209˜"5Change this instance-reference to a static reference.(¥áªÿ8ñêø€1
+X
+java:S2209¹"5Change this instance-reference to a static reference.(óõ¬Ìûÿÿÿÿ8öêø€1
+Y
+java:S1128"7Remove this unused import 'java.sql.PreparedStatement'.(òÄ™ƒÿÿÿÿÿ8øêø€1
+Q
+java:S1128"4Remove this unused import 'java.util.logging.Level'.(…µÛ¶8øêø€1
+R
+java:S1128"5Remove this unused import 'java.util.logging.Logger'.(ƒ¥óš8øêø€1
+E
+java:S1128"(Remove this unused import 'util.method'.(úäÊ8øêø€1

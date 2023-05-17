@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="498.0" prefWidth="730.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prueba100.shop">
+   <children>
+      <TableView fx:id="tablaProductos" layoutX="51.0" layoutY="203.0" prefHeight="176.0" prefWidth="585.0">
+        <columns>
+          <TableColumn fx:id="colidProduct" prefWidth="196.79999160766602" text="Id Product" />
+            <TableColumn fx:id="colunidades" minWidth="0.0" prefWidth="195.1999969482422" text="Units" />
+            <TableColumn fx:id="colpedido" minWidth="0.0" prefWidth="193.5999755859375" text="Id cliente" />
+        </columns>
+      </TableView>
+       <HBox layoutX="51.0" layoutY="355.0" prefHeight="110.0" prefWidth="304.0">
+           <opaqueInsets>
+               <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+           </opaqueInsets>
+           <padding>
+               <Insets bottom="50.0" right="50.0" top="50.0" />
+           </padding>
+           <Label text="TOTAL" />
+           <Label fx:id="lblTotal" text="\$0.00" />
+       </HBox>
+      <Label layoutX="52.0" layoutY="65.0" text="Id Product" />
+      <Label layoutX="52.0" layoutY="129.0" text="Unit" />
+      <TextField fx:id="txtUnidades" layoutX="51.0" layoutY="157.0" />
+      <Button fx:id="add" layoutX="529.0" layoutY="401.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="40.0" prefWidth="78.0" text="Add" />
+      <ToolBar layoutX="43.0" layoutY="14.0" prefHeight="40.0" prefWidth="600.0">
+        <items>
+          <Button fx:id="menu" mnemonicParsing="false" onAction="#goToMenu" text="Menu" />
+            <Button mnemonicParsing="false" text="Button" />
+        </items>
+      </ToolBar>
+      <ComboBox fx:id="productCombo" layoutX="51.0" layoutY="85.0" prefWidth="150.0" />
+      <ComboBox fx:id="clientCombo" layoutX="355.0" layoutY="85.0" prefWidth="150.0" />
+      <Label layoutX="365.0" layoutY="65.0" text="Cliente" />
+   </children>
+</AnchorPane>

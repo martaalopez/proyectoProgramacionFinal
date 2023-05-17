@@ -1,0 +1,24 @@
+
+`	java:S112V"FDefine and throw a dedicated exception instead of using a generic one.(©Ú³ëùÿÿÿÿ
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ı·¦‹üÿÿÿÿ
+f
+java:S3655M"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ôÇ
+r	java:S116"XRename this field "column_client" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(»Â¯Ûûÿÿÿÿ
+p	java:S116"VRename this field "column_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûéãîşÿÿÿÿ
+s	java:S116"YRename this field "column_idorder" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©ÏÉŒÿÿÿÿÿ
+q	java:S116"WRename this field "order_addBtn" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚıàÕùÿÿÿÿ
+p	java:S116!"VRename this field "order_table" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³œ¯ïûÿÿÿÿ
+h	java:S100E"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Êâ€ëùÿÿÿÿ
+Q	java:S125F"<This block of commented-out lines of code should be removed.(¼éàË
+h	java:S100V"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©Ú³ëùÿÿÿÿ
+S
+java:S1854Z"8Remove this useless assignment to local variable "date".(áŞÿÉúÿÿÿÿ
+D
+java:S1481Z")Remove this unused "date" local variable.(áŞÿÉúÿÿÿÿ
+P
+java:S2209^"5Change this instance-reference to a static reference.(óõ¬Ìûÿÿÿÿ
+P
+java:S2209j"5Change this instance-reference to a static reference.(óõ¬Ìûÿÿÿÿ
+h	java:S100r"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÕ°Æıÿÿÿÿ
+Q
+java:S2209‘"5Change this instance-reference to a static reference.(óõ¬Ìûÿÿÿÿ
