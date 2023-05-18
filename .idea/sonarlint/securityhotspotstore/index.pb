@@ -21,23 +21,25 @@ Q
 !src/main/java/model/supplier.java,4\f\4fe83f48df3341058575b9ce251fa28e2270724f
 N
 src/main/java/util/method.java,c\a\caa57c01599abd6345faf9de94ecd03b78360598
-W
-'src/main/java/DAO/product_orderDAO.java,e\4\e4eccc98c6a5aed426aa0245d710798d543583c7
 O
 src/main/java/model/client.java,5\f\5fc6f9e3a758f6fc09a111901ad60e864a303788
 ]
 -src/main/java/com/example/prueba100/crud.java,c\3\c3be345d9a5cd1ef7091fad877752fba682132cc
 ]
 -src/main/java/com/example/prueba100/menu.java,9\2\92d2ce9f7ba4773e73dea51c2740f2350943adfc
-\
-,src/main/java/com/example/prueba100/App.java,c\7\c7cfe4d0f386eac2ab0b16214ca96dfbfb9be80f
-]
--src/main/java/com/example/prueba100/shop.java,f\4\f458fcd95f003d2080ec514f1a17c6bc153e126c
-J
-src/main/java/DAO/DAO.java,9\f\9f39ec83ce0fb6186446d4cafb50dca6191a0c88
-Q
-!src/main/java/DAO/productDAO.java,c\d\cdb2f56613320dabbc54019e38c14709526228bd
-P
- src/main/java/DAO/clientDAO.java,b\3\b3bb5052dc75344848bc8c30402f28a590c0f84b
 ^
 .src/main/java/com/example/prueba100/sales.java,7\b\7bb177205d42a000f874c01dc037aaa3ff43042e
+^
+.src/main/java/com/example/prueba100/Sales.java,5\a\5a5b7ad669338484cfccdfb1bd88cd0a71e26f23
+]
+-src/main/java/com/example/prueba100/shop.java,f\4\f458fcd95f003d2080ec514f1a17c6bc153e126c
+W
+'src/main/java/DAO/product_orderDAO.java,e\4\e4eccc98c6a5aed426aa0245d710798d543583c7
+J
+src/main/java/DAO/DAO.java,9\f\9f39ec83ce0fb6186446d4cafb50dca6191a0c88
+\
+,src/main/java/com/example/prueba100/App.java,c\7\c7cfe4d0f386eac2ab0b16214ca96dfbfb9be80f
+P
+ src/main/java/DAO/clientDAO.java,b\3\b3bb5052dc75344848bc8c30402f28a590c0f84b
+Q
+!src/main/java/DAO/productDAO.java,c\d\cdb2f56613320dabbc54019e38c14709526228bd
