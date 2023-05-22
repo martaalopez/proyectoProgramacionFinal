@@ -1,4 +1,7 @@
 
+
+conexion.xml,c\e\cea450a916b0aacd653f63795bba766a27f71026
+
 h
 8src/main/java/com/example/prueba100/LoginController.java,6\8\685bad2c79b969f7f5e222e0a0ff4591a56eb373
 ^
@@ -17,7 +20,12 @@ O
 .src/main/java/com/example/prueba100/sales.java,7\b\7bb177205d42a000f874c01dc037aaa3ff43042e
 J
 src/main/java/DAO/DAO.java,9\f\9f39ec83ce0fb6186446d4cafb50dca6191a0c88
+
+Q
+!src/main/java/DAO/productDAO.java,c\d\cdb2f56613320dabbc54019e38c14709526228bd
+
 N
 src/main/java/util/method.java,c\a\caa57c01599abd6345faf9de94ecd03b78360598
 W
 'src/main/java/DAO/product_orderDAO.java,e\4\e4eccc98c6a5aed426aa0245d710798d543583c7
+
