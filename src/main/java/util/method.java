@@ -32,5 +32,13 @@ public class method<T> implements AutoCloseable {
     public void close() throws Exception {
         // no hacer nada
     }
+
+    public class Constants {
+        public static final String WARNING_TITLE = "Warning";
+        public static final String WARNING_ID_WRONG = "The ID is wrong.";
+        public static final String WARNING_ENTER_GMAIL = "Enter gmail again.";
+        public static final String WARNING_COMPLETE_FIELDS = "Complete all the fields.";
+    }
+
 }
 

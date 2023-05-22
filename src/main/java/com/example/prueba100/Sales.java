@@ -3,6 +3,7 @@ package com.example.prueba100;
 import DAO.clientDAO;
 import DAO.product_orderDAO;
 import connections.ConnectionMySQL;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
@@ -14,8 +15,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -48,12 +49,13 @@ public class Sales implements Initializable {
         List<XYChart.Data<String, Integer>> chartData = productOrderDAO.getProductOrderChartDataWithNames();
 
         // Configurar ejes de la gráfica
-        id_product.setLabel("Nombre de los productos");
-        unitOrder.setLabel("Número de unidades vendidas");
+        id_product.setLabel("Products name");
+        unitOrder.setLabel(
+                "Number of units sold");
 
         // Configurar datos de la gráfica
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        series.setName("Productos más vendidos");
+        series.setName("Most selled products");
         series.getData().addAll(chartData);
 
         // Agregar datos a la gráfica
@@ -71,5 +73,23 @@ public class Sales implements Initializable {
             totalCustomers.setEditable(false);
         }
     }
+    @FXML
+    void gotoProduct(ActionEvent event) throws IOException {
+        App.setRoot("crud");
+    }
 
+    @FXML
+    void gotoclient(ActionEvent event) throws IOException {
+        App.setRoot("orders");
+    }
+
+    @FXML
+    void gotoshop(ActionEvent event) throws IOException {
+        App.setRoot("shop");
+    }
+
+    @FXML
+    void gotosupplier(ActionEvent event) throws IOException {
+        App.setRoot("crudSupplier");
+    }
 }

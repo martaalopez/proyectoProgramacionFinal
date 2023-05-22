@@ -41,7 +41,7 @@
                         <Pane prefHeight="50.0" prefWidth="50.0" style="-fx-background-image: url(https://cdn-icons-png.flaticon.com/512/61/61457.png); -fx-background-position: center center; -fx-background-size: 38 38; -fx-background-repeat: no-repeat; -fx-background-color: #C7E4EE;" />
                     </children>
                 </Pane>
-                <Button fx:id="btn_home" alignment="CENTER" contentDisplay="CENTER" layoutX="179.0" layoutY="221.0" mnemonicParsing="false" onAction="#btnHomeValidate" prefHeight="42.0" prefWidth="107.0" style="-fx-background-radius: 15; -fx-background-color: #C7E4EE;" text="Login" textFill="WHITE">
+                <Button fx:id="btn_home" alignment="CENTER" contentDisplay="CENTER" layoutX="179.0" layoutY="221.0" mnemonicParsing="false" onAction="#btnHomeValidate" prefHeight="42.0" prefWidth="107.0" style="-fx-background-radius: 15; -fx-background-color: #C7E4EE;" text="Login" textFill="#3e3030">
 
                 </Button>
             </children></Pane>

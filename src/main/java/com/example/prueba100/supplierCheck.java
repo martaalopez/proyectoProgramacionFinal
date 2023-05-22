@@ -12,6 +12,7 @@ import javafx.scene.control.*;
 import model.product;
 import model.supplier;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -82,9 +83,9 @@ public class supplierCheck implements Initializable {
 
         if (nameValue.isEmpty() || phoneNumberValue.isEmpty() || selectedCity == null || selectedProduct == null || supplierValue==null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Campos requeridos");
+            alert.setTitle("Required fields");
             alert.setHeaderText(null);
-            alert.setContentText("Por favor, complete todos los campos requeridos.");
+            alert.setContentText("Please complete all required fields.");
             alert.showAndWait();
             return;
         }
@@ -107,15 +108,20 @@ public class supplierCheck implements Initializable {
 
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Inserción exitosa");
+        alert.setTitle("successful insertion");
         alert.setHeaderText(null);
-        alert.setContentText("El proveedor se ha insertado correctamente.");
+        alert.setContentText(
+                "The provider has been inserted successfully.");
         alert.showAndWait();
     }
-
 
     private List<String> getCitiesOfSpain() {
         // Puedes obtener las ciudades desde una base de datos, archivo, o crear una lista manualmente
         return Arrays.asList("Madrid", "Barcelona", "Valencia", "Sevilla", "Zaragoza", "Málaga", "Murcia", "Palma", "Bilbao", "Alicante");
+    }
+
+    @FXML
+    void gotomenu(ActionEvent event) throws IOException {
+        App.setRoot("inicio");
     }
 }
