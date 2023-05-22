@@ -6,6 +6,11 @@ module com.example.prueba100 {
     requires com.dlsc.formsfx;
     requires java.sql;
     requires java.xml.bind;
+    requires junit;
+    requires org.testng;
+    requires org.junit.jupiter.api;
+
+
 
     opens com.example.prueba100 to javafx.fxml;
     opens connections to java.xml.bind;

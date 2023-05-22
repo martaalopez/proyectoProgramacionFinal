@@ -7,14 +7,15 @@
 
 <AnchorPane prefHeight="498.0" prefWidth="730.0" style="-fx-background-color: #b7e8e0;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prueba100.shop">
    <children>
-      <TableView fx:id="tablaProductos" layoutX="336.0" layoutY="127.0" prefHeight="210.0" prefWidth="244.0">
+      <TableView fx:id="tablaProductos" layoutX="245.0" layoutY="127.0" prefHeight="210.0" prefWidth="369.0">
         <columns>
-          <TableColumn fx:id="colidProduct" prefWidth="133.80000686645508" text="Id Product" />
-            <TableColumn fx:id="colunidades" minWidth="0.0" prefWidth="110.80000305175781" text="Units" />
-            <TableColumn fx:id="colpedido" minWidth="0.0" prefWidth="342.0" text="Id cliente" />
+            <TableColumn fx:id="colunidades" minWidth="0.0" prefWidth="79.199951171875" text="Units" />
+            <TableColumn fx:id="colpedido" minWidth="0.0" prefWidth="12.0" text="Id cliente" />
+          <TableColumn fx:id="colidProduct" minWidth="4.0" prefWidth="166.0" text="Id Product" />
+            <TableColumn fx:id="colOrder" minWidth="8.0" prefWidth="110.0" text="Order" />
         </columns>
       </TableView>
-       <HBox layoutX="51.0" layoutY="355.0" prefHeight="110.0" prefWidth="304.0">
+       <HBox layoutX="49.0" layoutY="383.0" prefHeight="156.0" prefWidth="304.0">
            <opaqueInsets>
                <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
            </opaqueInsets>
@@ -30,17 +31,21 @@
                <Font size="23.0" />
             </font></Label>
        </HBox>
-      <Label layoutX="50.0" layoutY="93.0" text="Products" />
-      <Label layoutX="56.0" layoutY="168.0" text="Unit" />
-      <TextField fx:id="txtUnidades" layoutX="51.0" layoutY="203.0" />
-      <Button fx:id="add" layoutX="442.0" layoutY="382.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="40.0" prefWidth="136.0" text="Add" />
+      <Label layoutX="51.0" layoutY="199.0" text="Products" />
+      <Label layoutX="53.0" layoutY="270.0" text="Unit" />
+      <TextField fx:id="txtUnidades" layoutX="50.0" layoutY="297.0" />
+      <Button fx:id="add" layoutX="247.0" layoutY="362.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="40.0" prefWidth="102.0" text="Add" />
       <ToolBar layoutX="43.0" layoutY="14.0" prefHeight="40.0" prefWidth="600.0">
         <items>
           <Button fx:id="menu" mnemonicParsing="false" onAction="#goToMenu" text="Menu" />
         </items>
       </ToolBar>
-      <ComboBox fx:id="productCombo" layoutX="50.0" layoutY="124.0" prefWidth="150.0" />
-      <ComboBox fx:id="clientCombo" layoutX="51.0" layoutY="294.0" prefWidth="150.0" />
-      <Label layoutX="56.0" layoutY="256.0" text="Cliente" />
+      <ComboBox fx:id="productCombo" layoutX="49.0" layoutY="232.0" prefWidth="150.0" />
+      <ComboBox fx:id="clientCombo" layoutX="49.0" layoutY="154.0" prefWidth="150.0" />
+      <Label layoutX="56.0" layoutY="118.0" text="Cliente" />
+      <Label layoutX="53.0" layoutY="337.0" text="Order id" />
+      <TextField fx:id="idOrder" layoutX="51.0" layoutY="369.0" />
+      <Button fx:id="start" layoutX="49.0" layoutY="71.0" mnemonicParsing="false" onAction="#startOrder" text="Empezar pedido" />
+      <Button fx:id="finish" layoutX="483.0" layoutY="362.0" mnemonicParsing="false" onAction="#finishOrder" prefHeight="26.0" prefWidth="116.0" text="Finalizar pedido" />
    </children>
 </AnchorPane>

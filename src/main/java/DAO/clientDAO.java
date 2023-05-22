@@ -16,6 +16,11 @@ public class  clientDAO  implements DAO<client>{
         this.connection = connection;
     }
     private Connection conn =null;
+    /**
+     * Guarda un objeto client en la base de datos.
+     *
+     * @param o El objeto client a guardar.
+     */
     public void guardar(client o) {
         String sql = null;
         if (!o.getName().equals("")) {
@@ -30,6 +35,12 @@ public class  clientDAO  implements DAO<client>{
         }
     }
 
+    /**
+     * Obtiene una lista de todos los objetos client de la base de datos.
+     *
+     * @return Una lista de objetos client.
+     * @throws SQLException Si ocurre un error de SQL al consultar la base de datos.
+     */
     @Override
     public List<client> getAll() throws SQLException {
         List<client> list = new ArrayList<>();
@@ -55,6 +66,12 @@ public class  clientDAO  implements DAO<client>{
 
     }
 
+    /**
+     * Elimina un objeto client de la base de datos por su id_client.
+     *
+     * @param id_client El id_client del objeto client a eliminar.
+     * @throws SQLException Si ocurre un error de SQL al eliminar el objeto de la base de datos.
+     */
     @Override
     public void eliminar(String id_client) throws SQLException {
         String query = "DELETE  FROM client WHERE id_client = ?";
@@ -67,16 +84,21 @@ public class  clientDAO  implements DAO<client>{
         }
     }
 
-
+    /**
+     * Actualiza un objeto client en la base de datos.
+     *
+     * @param o El objeto client actualizado.
+     * @throws SQLException Si ocurre un error de SQL al actualizar el objeto en la base de datos.
+     */
     @Override
     public void actualizar(client o) throws SQLException {
-        String sql = "UPDATE client SET name = ?,phoneNumber=?,mail=?,id_person=? WHERE id_client = ?";
+        String sql = "UPDATE client SET name = ?, phoneNumber = ?, mail = ? WHERE id_client = ?";
         try {
             PreparedStatement pst = this.connection.getConnect().prepareStatement(sql);
             pst.setString(1, o.getName());
-            pst.setString(2, o.getId_client());
-            pst.setInt(3,o.getPhoneNumber());
-            pst.setString(4,o.getMail());
+            pst.setInt(2, o.getPhoneNumber());
+            pst.setString(3, o.getMail());
+            pst.setString(4, o.getId_client());
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(clientDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -85,11 +107,17 @@ public class  clientDAO  implements DAO<client>{
 
 
 
+
     @Override
     public void close() throws Exception {
 
     }
 
+    /**
+     * Obtiene el número total de clientes en la base de datos.
+     *
+     * @return El número total de clientes.
+     */
         @Override
         public int getClientTotal() {
             String query = "SELECT COUNT(id_client) FROM client";
@@ -106,5 +134,5 @@ public class  clientDAO  implements DAO<client>{
             return sumClients;
         }
 
-    }
+}
 

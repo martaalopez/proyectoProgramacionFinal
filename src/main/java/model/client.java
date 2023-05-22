@@ -1,5 +1,4 @@
 package model;
-
 import javafx.beans.property.*;
 
 import java.util.ArrayList;
@@ -46,5 +45,6 @@ public class client extends person {
     public String toString() {
         return id_client.getValue() + " " + name.getValue();
     }
+
 
 }

@@ -27,8 +27,8 @@ public class product_orderDAO  implements DAO<product_order>{
     public void guardar(product_order p) {
         String sql = null;
         if (!Objects.equals(p.getUnitProduct(), "")) {
-            sql = "INSERT INTO product_order(id_product, id_client, unitProduct ) VALUES('" + p.getId_product() + "','"
-                    + p.getId_client() + "','" + p.getUnitProduct() + "')";
+            sql = "INSERT INTO product_order(id_product, id_client, unitProduct ,id_order) VALUES('" + p.getId_product() + "','"
+                    + p.getId_client() + "','" + p.getUnitProduct() + "','"+p.getId_order()+"')";
             // subtract the purchased units from the units available for the product
             String updateSql = "UPDATE product SET unit = unit - " + p.getUnitProduct() + " WHERE id_product = " + p.getId_product();
             try {
@@ -59,7 +59,6 @@ public class product_orderDAO  implements DAO<product_order>{
             }
         }
     }
-
 
     @Override
     public List<product_order> getAll() throws SQLException {
@@ -115,8 +114,6 @@ public class product_orderDAO  implements DAO<product_order>{
         }
         return chartDataList;
     }
-
-
 
 
     public  product_order findById(Integer id_product) throws SQLException {
