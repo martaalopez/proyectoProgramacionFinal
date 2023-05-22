@@ -32,11 +32,8 @@ public class client implements Initializable {
     @FXML
     private TableColumn<model.client, String> column_client;
 
-
     @FXML
     private TableColumn<model.client, String> column_idorder;
-
-
 
     @FXML
     private Button order_addBtn;
@@ -82,15 +79,10 @@ public class client implements Initializable {
         /*poder hacer validaciones*/
         objOrder.bind(order_table.getSelectionModel().selectedItemProperty());
     }
-
     @FXML
     void Delete(ActionEvent event) throws SQLException {
-      /* if(objOrder.get()==null){
-            method.rotateBug(order_table);
-            return;
-
-        /* hacemos una alerta */
-        Alert a = new Alert(Alert.AlertType.CONFIRMATION, "¿Desea eliminar el cliente?", ButtonType.YES, ButtonType.NO);
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION,
+                "Do you want to delete the client?", ButtonType.YES, ButtonType.NO);
         a.setHeaderText(this.objOrder.get().getName());
         if (a.showAndWait().get() == ButtonType.YES) {
             ConnectionMySQL.getConnect();
@@ -98,15 +90,14 @@ public class client implements Initializable {
             clientDAO.eliminar(objOrder.get().getId_client());
             listarOrder();
         }
-
     }
     @FXML
     void Insert(ActionEvent event) throws Exception {
         if (!txtId.getText().isEmpty() && !txtClient.getText().isEmpty() && !txtMail.getText().isEmpty() && !txtNumber.getText().isEmpty() ) {
             if (!validarDNI(txtId.getText())) {
-                Notifications.create().title("Aviso").text("El DNI es incorrecto.").showWarning();
+                Notifications.create().title(method.Constants.WARNING_TITLE).text(method.Constants.WARNING_ID_WRONG).showWarning();
             } if(!method.GmailValidate(txtMail.getText())){
-                Notifications.create().title("Aviso").text("Introduce de nuevo el gmail.").showWarning();
+                Notifications.create().title(method.Constants.WARNING_TITLE).text(method.Constants.WARNING_ENTER_GMAIL).showWarning();
             }
             else {
                 String id_client = txtId.getText();
@@ -124,7 +115,7 @@ public class client implements Initializable {
                 listarOrder();
             }
         } else {
-            Notifications.create().title("Aviso").text("Completa todos los campos.").showWarning();
+            Notifications.create().title(method.Constants.WARNING_TITLE).text(method.Constants.WARNING_COMPLETE_FIELDS).showWarning();
         }
     }
     public void listarOrder() {
@@ -139,54 +130,56 @@ public class client implements Initializable {
 
     @FXML
     void Edit(ActionEvent event) {
-
         // Obtenemos la orden seleccionada de la tabla
-       model.client selectedOrder = objOrder.get();
+        model.client selectedOrder = objOrder.get();
+
         // Creamos una ventana para que el usuario pueda editar los valores de la orden
         Dialog<model.client> dialog = new Dialog<>();
-        dialog.setTitle("Editar orden");
-        dialog.setHeaderText("Ingrese los nuevos valores de la orden:");
+        dialog.setTitle("Edit");
+        dialog.setHeaderText("Enter the new order values:");
 
-        // Creamos los campos de texto para que el usuario pueda ingresar los nuevos valores
+        // Crear campos de texto para que el usuario pueda ingresar los nuevos valores
         TextField idField = new TextField(String.valueOf(selectedOrder.getId_client()));
         idField.setEditable(false);
         TextField clientField = new TextField(String.valueOf(selectedOrder.getName()));
         TextField mailField = new TextField(String.valueOf(selectedOrder.getMail()));
         TextField phoneField = new TextField(String.valueOf(selectedOrder.getPhoneNumber()));
-        // Agregamos los campos de texto a la ventana
+
+        // Agregar campos de texto a la ventana
         GridPane grid = new GridPane();
         grid.add(new Label("ID:"), 1, 1);
         grid.add(idField, 2, 1);
-        grid.add(new Label("Cliente:"), 1, 2);
+        grid.add(new Label("Client:"), 1, 2);
         grid.add(clientField, 2, 2);
-        grid.add(new Label("Mail:"), 1, 2);
-        grid.add(mailField, 2, 2);
-        grid.add(new Label("Phone Number:"), 1, 2);
-        grid.add(phoneField, 2, 2);
+        grid.add(new Label("Mail:"), 1, 3);
+        grid.add(mailField, 2, 3);
+        grid.add(new Label("Phone Number:"), 1, 4);
+        grid.add(phoneField, 2, 4);
         dialog.getDialogPane().setContent(grid);
 
-        // Agregamos los botones de "Guardar" y "Cancelar"
         ButtonType saveButtonType = new ButtonType("Guardar", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
 
-
-        // Cuando el usuario presiona el botón de "Guardar", guardamos los cambios en la base de datos
+        // Cuando el usuario presiona el botón guardar ,se guardan los cambios en la base de datos
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == saveButtonType) {
                 selectedOrder.setName(clientField.getText());
+                selectedOrder.setMail(mailField.getText());
+                selectedOrder.setPhoneNumber(Integer.parseInt(phoneField.getText()));
+
                 try {
                     this.conexionBD.getConnect();
                     clientDAO = new clientDAO(conexionBD);
                     clientDAO.actualizar(selectedOrder);
                     listarOrder();
-                } catch (Exception ex) {
+                } catch (SQLException ex) {
                     ex.printStackTrace();
-                    Notifications.create().title("Aviso").text("Error al intentar guardar").showError();
+
                 }
             }
             return null;
         });
-
         dialog.showAndWait();
     }
+
 }

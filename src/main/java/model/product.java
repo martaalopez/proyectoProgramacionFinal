@@ -1,13 +1,7 @@
 package model;
 
-import connections.ConnectionMySQL;
-import javafx.beans.InvalidationListener;
-import javafx.beans.property.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
+import javafx.beans.property.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +34,14 @@ public class product {
     public product(SimpleIntegerProperty idProperty, SimpleStringProperty descriptionProperty) {
         this.id_product = idProperty;
         this.description= descriptionProperty;
+    }
+
+    public product(int i, String testProduct, int i1, double v, double v1) {
+        this.id_product = id_product;
+        this.description=description;
+        this.unit=unit;
+        this.sale_price=sale_price;
+        this.supplier_price=supplier_price;
     }
 
     public int getId_product() {

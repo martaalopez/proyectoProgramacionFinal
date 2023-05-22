@@ -12,17 +12,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import org.controlsfx.control.Notifications;
-import util.method;
 
 public class crud  implements Initializable {
     @FXML
@@ -75,7 +70,6 @@ public class crud  implements Initializable {
         App.setRoot("inicio");
     }
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         columnID.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getId_product()).asObject());
@@ -93,7 +87,7 @@ public class crud  implements Initializable {
     void Delete(ActionEvent event) throws SQLException {
 
         /* hacemos una alerta */
-        Alert a = new Alert(Alert.AlertType.CONFIRMATION, "¿Desea eliminar el producto?", ButtonType.YES, ButtonType.NO);
+        Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete the product?", ButtonType.YES, ButtonType.NO);
         a.setHeaderText(this.objProduct.get().getDescription());
         if (a.showAndWait().get() == ButtonType.YES) {
             ConnectionMySQL.getConnect();
@@ -105,26 +99,33 @@ public class crud  implements Initializable {
     }
 
     @FXML
-    void Insert(ActionEvent event) throws Exception {
+    void Insert(ActionEvent event) {
         if (!txtid.getText().isEmpty() && !txtdescription.getText().isEmpty() && !txtunit.getText().isEmpty()) {
-            int id_product = Integer.parseInt(txtid.getText());
-            int unit = Integer.parseInt(txtunit.getText());
-            double salePrice = Double.parseDouble(txtSale.getText());
-            double supplierPrice = Double.parseDouble(txtSupplier.getText());
-            product p = new product();
-            p.setId_product(id_product);
-            p.setDescription(txtdescription.getText());
-            p.setUnit(unit);
-            p.setSale_price(salePrice);
-            p.setSupplier_price(supplierPrice);
-            this.conexionBD.getConnect();
-            productDAO = new productDAO(conexionBD);
-            productDAO.guardar(p);
-            listarProduct();
+            String idText = txtid.getText();
+            if (idText.matches("\\d{5}")) { // Verificar que el ID tenga exactamente 5 números
+                int id_product = Integer.parseInt(idText);
+                int unit = Integer.parseInt(txtunit.getText());
+                double salePrice = Double.parseDouble(txtSale.getText().replace(",", ".")); // Reemplazar coma por punto
+                double supplierPrice = Double.parseDouble(txtSupplier.getText().replace(",", ".")); // Reemplazar coma por punto
+                product p = new product();
+                p.setId_product(id_product);
+                p.setDescription(txtdescription.getText());
+                p.setUnit(unit);
+                p.setSale_price(salePrice);
+                p.setSupplier_price(supplierPrice);
+                this.conexionBD.getConnect();
+                productDAO = new productDAO(conexionBD);
+                productDAO.guardar(p);
+                listarProduct();
+            } else {
+                Notifications.create().title("Warning").text("The ID must contain exactly 5 numbers.").showWarning();
+            }
         } else {
-            Notifications.create().title("Aviso").text("Por favor, complete todos los campos.").showWarning();
+            Notifications.create().title("Warning").text("Please complete all fields.").showWarning();
         }
     }
+
+
 
     public void listarProduct() {
         try {
@@ -142,8 +143,8 @@ public class crud  implements Initializable {
         product selectedProduct = objProduct.get();
         // Creamos una ventana para que el usuario pueda editar los valores del producto
         Dialog<product> dialog = new Dialog<>();
-        dialog.setTitle("Editar producto");
-        dialog.setHeaderText("Ingrese los nuevos valores del producto:");
+        dialog.setTitle("Edit");
+        dialog.setHeaderText("Enter the new product values:");
 
         // Creamos los campos de texto para que el usuario pueda ingresar los nuevos valores
         TextField idField = new TextField(String.valueOf(selectedProduct.getId_product()));
@@ -157,13 +158,14 @@ public class crud  implements Initializable {
         GridPane grid = new GridPane();
         grid.add(new Label("ID:"), 1, 1);
         grid.add(idField, 2, 1);
-        grid.add(new Label("Descripción:"), 1, 2);
+        grid.add(new Label("Description:"), 1, 2);
         grid.add(descriptionField, 2, 2);
-        grid.add(new Label("Unidad:"), 1, 3);
+        grid.add(new Label("Unit:"), 1, 3);
         grid.add(unitField, 2, 3);
-        grid.add(new Label("Precio venta:"), 1, 4);
+        grid.add(new Label("Sale price:"), 1, 4);
         grid.add(saleField, 2, 4);
-        grid.add(new Label("Precio proveedor:"), 1, 5);
+        grid.add(new Label(
+                "supplier price:"), 1, 5);
         grid.add(supplierField, 2, 5);
         dialog.getDialogPane().setContent(grid);
 
@@ -185,7 +187,7 @@ public class crud  implements Initializable {
                     listarProduct();
                 } catch (Exception ex) {
                     ex.printStackTrace();
-                    Notifications.create().title("Aviso").text("Error al intentar guardar").showError();
+                    Notifications.create().title("Warning").text("Error trying to save").showError();
                 }
             }
             return null;

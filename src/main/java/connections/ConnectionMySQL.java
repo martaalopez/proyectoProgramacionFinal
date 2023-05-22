@@ -37,8 +37,6 @@ public class ConnectionMySQL {
         return connection;
     }
 
-
-
     /**
      * Método para leer los datos de la conexion guardados en el fichero file
      * @return objeto ConnectionData con los datos leidos
@@ -71,16 +69,17 @@ public class ConnectionMySQL {
 
     public static void cerrar() {
         try {
-            if (connection != null) {
-                connection.close();
-            }
             if (statement != null) {
                 statement.close();
+            }
+            if (connection != null) {
+                connection.close();
             }
         } catch (SQLException ex) {
             Logger.getLogger(ConnectionMySQL.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public boolean GUARDAR(String sql) throws SQLException {
         return (statement.executeUpdate(sql)>0);
     }

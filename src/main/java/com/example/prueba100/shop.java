@@ -16,11 +16,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import DAO.product_orderDAO;
+
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import DAO.clientDAO;
 
 public class shop implements Initializable {
+
+    private boolean orderInProgress = false; // Track if an order is already in progress
+    private int orderId;
+    @FXML
+    private Button start;
+    @FXML
+    private Button finish;
+
+
 
     @FXML
     private ComboBox<model.client> clientCombo;
@@ -39,10 +50,16 @@ public class shop implements Initializable {
     private TableColumn<product_order, Integer> colunidades;
 
     @FXML
+    private TableColumn<product_order,Integer> colOrder;
+
+    @FXML
     private Button goToMenu;
 
     @FXML
     private Label lblTotal;
+
+    @FXML
+    private TextField idOrder;
 
     @FXML
     private TableView<product_order> tablaProductos;
@@ -66,6 +83,7 @@ public class shop implements Initializable {
         colidProduct.setCellValueFactory(new PropertyValueFactory<>("id_product"));
         colunidades.setCellValueFactory(new PropertyValueFactory<>("unitProduct"));
         colpedido.setCellValueFactory(new PropertyValueFactory<>("id_client"));
+        colOrder.setCellValueFactory(new PropertyValueFactory<>("id_order"));
 
         try {
             conexionBD.getConnect();
@@ -90,23 +108,40 @@ public class shop implements Initializable {
     void addToCart(ActionEvent event) {
         // Obtener producto seleccionado y cantidad
         product selectedProduct = productCombo.getSelectionModel().getSelectedItem();
-        int unitOrder = Integer.parseInt(txtUnidades.getText());
-        if ( selectedProduct.getUnit() < unitOrder || unitOrder == 0 || unitOrder<0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "No hay suficientes unidades del producto seleccionado.", ButtonType.OK);
+        int unitOrder;
+        int id_Order;
+
+        try {
+            unitOrder = Integer.parseInt(txtUnidades.getText());
+            id_Order = Integer.parseInt(idOrder.getText());
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Quantity and Order ID must be integers.", ButtonType.OK);
             alert.showAndWait();
             return;
         }
-        model.client selectedClient=clientCombo.getSelectionModel().getSelectedItem();
 
+        if (selectedProduct == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "You must select a product.", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+
+        if (selectedProduct.getUnit() < unitOrder || unitOrder <= 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "There are not enough units of the selected product.", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+
+        model.client selectedClient = clientCombo.getSelectionModel().getSelectedItem();
 
         // Crear nuevo objeto Product_Order
-        product_order newOrder = new product_order(selectedProduct, unitOrder,selectedClient);
+        product_order newOrder = new product_order(selectedProduct, unitOrder, selectedClient, id_Order);
 
         // Agregar a carrito y actualizar tabla
         cart.add(newOrder);
         tablaProductos.refresh();
 
-        /*Actualizar total*/
+        // Actualizar total
         updateTotal();
 
         // Guardar en base de datos
@@ -137,5 +172,55 @@ public class shop implements Initializable {
     @FXML
     private void goToMenu() throws IOException {
         App.setRoot("inicio");
+    }
+    @FXML
+    void startOrder(ActionEvent event) {
+        if (orderInProgress) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "There is already an order in progress. Please complete or cancel the current order before starting a new one..", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+        Random rand = new Random();
+        orderId = rand.nextInt(10000);
+        orderInProgress = true;
+
+        // Habilitar o deshabilitar controles según sea necesario
+        productCombo.setDisable(false);
+        txtUnidades.setDisable(false);
+        add.setDisable(false);
+        start.setDisable(true);
+        finish.setDisable(false);
+    }
+
+    @FXML
+    void finishOrder(ActionEvent event) {
+        if (!orderInProgress) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "There are no orders in progress to finish.", ButtonType.OK);
+            alert.showAndWait();
+            return;
+        }
+
+        // Guardar en base de datos
+        product_orderDAO product_orderDAO = new product_orderDAO(conexionBD);
+        for (product_order order : cart) {
+            order.setId_order(orderId);
+            product_orderDAO.guardar(order);
+        }
+
+        // Limpiar y reiniciar la pantalla
+        cart.clear();
+        tablaProductos.refresh();
+        idOrder.clear();
+        updateTotal();
+
+        // Habilitar o deshabilitar controles según sea necesario
+        productCombo.setDisable(true);
+        txtUnidades.setDisable(true);
+        add.setDisable(true);
+        start.setDisable(false);
+        finish.setDisable(true);
+
+        orderInProgress = false;
+        orderId = 0;
     }
         }
