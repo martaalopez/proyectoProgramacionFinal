@@ -1,29 +1,22 @@
 
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûîÏ·úÿÿÿÿ8Í½ø€1
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûîÏ·úÿÿÿÿ8Î½ø€1
-l	java:S117f"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÑ<8Ï½ø€1
-n	java:S117¢"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶‘ÒÑ8Ñ½ø€1
-]	java:S110$"<This class has 7 parents which is greater than 5 authorized.(­“æûÿÿÿÿ8Ò½ø€1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰ªØµ8€åä©„1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‰ªØµ8€åä©„1
+l	java:S1176"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÑ<8Ï½ø€1
+m	java:S117g"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶‘ÒÑ8Ñ½ø€1
 i	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ÄŞ¤8Ó½ø€1
+~
+java:S4165("bRemove this useless assignment; "name" already holds the assigned value along all execution paths.(šüØ8ˆåä©„1
 w	java:S116"VRename this field "id_supplier" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õÈ”Øûÿÿÿÿ8ß½ø€1
-q	java:S116"URename this field "id_product" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃÂõ¹8à½ø€1
-£
-java:S1186&"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(íù®±úÿÿÿÿ8å½ø€1
-£
-java:S1186+"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(®¤ƒ¤üÿÿÿÿ8å½ø€1
-
-java:S1186D"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(›¨½ò8å½ø€1
-
-java:S1186I"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.( Ñ¸—8å½ø€1
-
-java:S1186N"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ñ±ùö8å½ø€1
-£
-java:S1186S"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ì–ŠŸşÿÿÿÿ8å½ø€1
-£
-java:S1186X"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(µ††˜üÿÿÿÿ8å½ø€1
-j	java:S100^"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºèÒ8é½ø€1
-o	java:S100b"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Âø¾ÿÿÿÿÿ8ê½ø€1
-i	java:S100f"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÑ<8ê½ø€1
-j	java:S100š"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™õ•#8í½ø€1
-p	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ü—öğşÿÿÿÿ8í½ø€1
-k	java:S100¢"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶‘ÒÑ8í½ø€1
+q	java:S116"URename this field "id_product" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÃÂõ¹8à½ø€1
+j	java:S100."NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºèÒ8é½ø€1
+o	java:S1002"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Âø¾ÿÿÿÿÿ8ê½ø€1
+i	java:S1006"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÑ<8ê½ø€1
+i	java:S100_"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™õ•#8í½ø€1
+o	java:S100c"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ü—öğşÿÿÿÿ8í½ø€1
+j	java:S100g"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶‘ÒÑ8í½ø€1
+`
+java:S1128">Remove this unused import 'javafx.beans.InvalidationListener'.(í¿ïÈşÿÿÿÿ8åä©„1
+[
+java:S1128">Remove this unused import 'javafx.beans.value.ChangeListener'.(¸÷Í8åä©„1
+\
+java:S1128	"?Remove this unused import 'javafx.beans.value.ObservableValue'.(´œ«Å8åä©„1

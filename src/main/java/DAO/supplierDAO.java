@@ -6,6 +6,7 @@ import model.supplier;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,7 +26,7 @@ public class supplierDAO  implements DAO<supplier>{
 
 
 
-        public void guardar(supplier s) {
+    public void guardar(supplier s) {
             String sql = "INSERT INTO supplier (id_supplier, name, address, phoneNumber, id_product) VALUES (?, ?, ?, ?, ?)";
 
             try {

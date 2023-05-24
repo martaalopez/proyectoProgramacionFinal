@@ -1,0 +1,8 @@
+
+i
+java:S2095@"GUse try-with-resources or close this "clientDAO" in a "finally" clause.(çƒÎşÿÿÿÿ8›ó›©„1
+p
+java:S20950"NUse try-with-resources or close this "product_orderDAO" in a "finally" clause.(Î•‡‡ıÿÿÿÿ8œó›©„1
+T
+java:S2589G"7Remove this expression which always evaluates to "true"(îÀ˜Ù8œó›©„1
+q	java:S116"URename this field "id_product" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(áŸ¥ã8ó›©„1

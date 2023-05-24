@@ -15,6 +15,7 @@ public class product {
     public  DoubleProperty supplier_price;
 
     public  List<client> clients = new ArrayList<>();
+
     public List<product> getProducts;
 
     public product(IntegerProperty id_product,StringProperty description,IntegerProperty unit,DoubleProperty sale_price,DoubleProperty supplier_price) {
