@@ -8,7 +8,7 @@ module com.example.prueba100 {
     requires java.xml.bind;
     requires junit;
     requires org.testng;
-    requires org.junit.jupiter.api;
+   /* requires org.junit.jupiter.api;*/
 
 
 

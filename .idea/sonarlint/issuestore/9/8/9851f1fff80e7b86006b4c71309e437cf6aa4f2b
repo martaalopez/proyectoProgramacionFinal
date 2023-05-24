@@ -1,0 +1,22 @@
+
+l	java:S117g"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(À§¯8§’¨„1
+g	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ı·¦‹üÿÿÿÿ
+m
+java:S3655W"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ôÇ8½§’¨„1
+r	java:S116"VRename this field "column_mail" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(’çâ¡8áå»›„1
+t	java:S116"XRename this field "column_number" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(åõ‚ê8ãå»›„1
+y	java:S116!"XRename this field "column_client" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›”»‡ùÿÿÿÿ8ãå»›„1
+z	java:S116$"YRename this field "column_idorder" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©ÏÉŒÿÿÿÿÿ8¾§’¨„1
+x	java:S116'"WRename this field "order_addBtn" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÚıàÕùÿÿÿÿ8¾§’¨„1
+w	java:S116*"VRename this field "order_table" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³œ¯ïûÿÿÿÿ8¾§’¨„1
+o	java:S100S"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Êâ€ëùÿÿÿÿ8Ç§’¨„1
+o	java:S100_"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©Ú³ëùÿÿÿÿ8Ê§’¨„1
+Y
+java:S3972c"7Move this "if" to a new line or add the missing "else".(·¦Üúÿÿÿÿ8Î§’¨„1
+W
+java:S2209p"5Change this instance-reference to a static reference.(óõ¬Ìûÿÿÿÿ8Ñ§’¨„1
+W
+java:S2209{"5Change this instance-reference to a static reference.(óõ¬Ìûÿÿÿÿ8Ô§’¨„1
+p	java:S100„"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÕ°Æıÿÿÿÿ8Õ§’¨„1
+X
+java:S2209«"5Change this instance-reference to a static reference.(óõ¬Ìûÿÿÿÿ8Ş§’¨„1

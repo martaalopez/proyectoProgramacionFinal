@@ -1,6 +1,7 @@
 package com.example.prueba100;
 
 import DAO.productDAO;
+import DAO.supplierDAO;
 import connections.ConnectionMySQL;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -10,12 +11,10 @@ import javafx.scene.layout.GridPane;
 import model.product;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import javafx.event.ActionEvent;
 import org.controlsfx.control.Notifications;
 
@@ -69,7 +68,6 @@ public class crud  implements Initializable {
     void goToInicio(ActionEvent event) throws IOException {
         App.setRoot("inicio");
     }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         columnID.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getId_product()).asObject());
@@ -81,22 +79,24 @@ public class crud  implements Initializable {
         productTableView.setItems(listaProduct);
         /*poder hacer validaciones*/
         objProduct.bind(productTableView.getSelectionModel().selectedItemProperty());
-
     }
     @FXML
     void Delete(ActionEvent event) throws SQLException {
-
         /* hacemos una alerta */
         Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete the product?", ButtonType.YES, ButtonType.NO);
         a.setHeaderText(this.objProduct.get().getDescription());
         if (a.showAndWait().get() == ButtonType.YES) {
             ConnectionMySQL.getConnect();
             productDAO = new productDAO(conexionBD);
-            productDAO.eliminar(objProduct.get().getId_product());
+
+            int productId = objProduct.get().getId_product();
+            productDAO.eliminar(productId);
+
             listarProduct();
         }
-
     }
+
+
 
     @FXML
     void Insert(ActionEvent event) {
@@ -124,9 +124,6 @@ public class crud  implements Initializable {
             Notifications.create().title("Warning").text("Please complete all fields.").showWarning();
         }
     }
-
-
-
     public void listarProduct() {
         try {
             this.conexionBD.getConnect();

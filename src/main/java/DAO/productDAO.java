@@ -68,18 +68,18 @@ public class productDAO  implements DAO<product>{
     }
 
 
-
     public void eliminar(Integer id_product) throws SQLException {
-        String query = "DELETE FROM product WHERE id_product = ?";
+        String queryDelete = "DELETE p, s FROM product p LEFT JOIN supplier s ON p.id_product = s.id_product WHERE p.id_product = ?";
+
         try {
-            PreparedStatement pst = this.connection.getConnect().prepareStatement(query);
-            pst.setInt(1, id_product);
-            pst.executeUpdate();
+            PreparedStatement pstDelete = this.connection.getConnect().prepareStatement(queryDelete);
+            pstDelete.setInt(1, id_product);
+            pstDelete.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(productDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
+
 
     public void actualizar(product p) throws SQLException {
         String sql = "UPDATE product SET description = ?, unit = ?, sale_price = ?, supplier_price = ? WHERE id_product = ?";

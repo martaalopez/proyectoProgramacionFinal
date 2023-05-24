@@ -1,0 +1,19 @@
+
+b	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ş°®
+c
+java:S2095<"HUse try-with-resources or close this "productDAO" in a "finally" clause.(¢Çòşÿÿÿÿÿ
+k	java:S116!"VRename this field "id_supplier" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àˆÆ„
+n
+java:S14502"YRemove the "connection" field and declare it as a local variable in the relevant methods.(Şúx
+K
+java:S2209;"5Change this instance-reference to a static reference.(¡ô¤£
+K
+java:S2209@"5Change this instance-reference to a static reference.(¡ô¤£
+F
+java:S1068,"0Remove this unused "productItems" private field.(”Š‡
+D
+java:S1068/".Remove this unused "productDao" private field.(ÚÈûŸ
+>
+java:S10681"(Remove this unused "conn" private field.(·ššÔ
+C
+java:S10682".Remove this unused "connection" private field.(Şúx

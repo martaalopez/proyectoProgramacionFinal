@@ -18,8 +18,7 @@ public class product_orderDAO  implements DAO<product_order>{
     private static final String FINDBYID = "SELECT * FROM product_order WHERE id_product=?";
     private ConnectionMySQL connection;
 
-    public product_orderDAO(ConnectionMySQL connection) {
-        this.connection = connection;
+    public product_orderDAO(ConnectionMySQL connection) {this.connection = connection;
     }
     private Connection conn =null;
 
