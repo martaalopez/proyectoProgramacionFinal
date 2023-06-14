@@ -1,0 +1,10 @@
+
+c
+java:S20953"HUse try-with-resources or close this "ProductDAO" in a "finally" clause.(ç¢±×ûÿÿÿÿ
+k	java:S116 "VRename this field "id_supplier" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(àˆÆ„
+K
+java:S22092"5Change this instance-reference to a static reference.(¡ô¤£
+K
+java:S22097"5Change this instance-reference to a static reference.(¡ô¤£
+K
+java:S1068+"0Remove this unused "productItems" private field.(¶öä‘ûÿÿÿÿ

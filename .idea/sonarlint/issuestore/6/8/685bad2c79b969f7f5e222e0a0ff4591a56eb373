@@ -1,2 +1,18 @@
 
-m	java:S116"SRename this field "btn_home" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€Öøİÿÿÿÿÿ
+i
+java:S2095A"GUse try-with-resources or close this "ClientDAO" in a "finally" clause.(ŸáÉ×øÿÿÿÿ8Í»¨Œ‹1
+Y
+java:S2589T"7Remove this expression which always evaluates to "true"(Ÿ‘ïäûÿÿÿÿ8Í»¨Œ‹1
+n	java:S116"TRename this field "btn_login" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ºšŒéûÿÿÿÿ
+l	java:S116"WRename this field "txt_password" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÔšÈ
+q	java:S116"WRename this field "txt_username" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÑ‹ùÿÿÿÿ
+l	java:S116""RRename this field "type_up" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÙØßùÿÿÿÿ
+L
+java:S20932"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ8Ü»¨Œ‹1
+K
+java:S1128
+".Remove this unused import 'javafx.scene.Node'.(ÑÖ¬ï8ŞìÉÌ‹1
+J
+java:S1128"(Remove this unused import 'model.Admin'.(‹‡Æèøÿÿÿÿ8ŞìÉÌ‹1
+F
+java:S1128")Remove this unused import 'model.Client'.(±ÍÌ8ŞìÉÌ‹1

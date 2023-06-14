@@ -1,0 +1,32 @@
+
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ä¤‘‹øÿÿÿÿ8êÊĞÚ‹1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ä”òª8îÊĞÚ‹1
+m
+java:S2095©"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(©Ù§8öÌĞÚ‹1
+l
+java:S2095$"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(­ƒ8öÌĞÚ‹1
+q
+java:S2095""OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Œ³Î—øÿÿÿÿ8òÌĞÚ‹1
+T
+java:S2589)"7Remove this expression which always evaluates to "true"(¡ææú8öÌĞÚ‹1
+
+java:S1186Q"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(š––å8÷ÌĞÚ‹1
+£
+java:S1186W"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(£ñ «ûÿÿÿÿ8÷ÌĞÚ‹1
+£
+java:S1186\"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¤î„„üÿÿÿÿ8øÌĞÚ‹1
+
+java:S1186–"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(©éÑr8øÌĞÚ‹1
+R
+java:S2209 "5Change this instance-reference to a static reference.(çÙ—8„ÍĞÚ‹1
+W
+java:S2209@"5Change this instance-reference to a static reference.(æøÌ—ÿÿÿÿÿ8ŒÍĞÚ‹1
+W
+java:S2209m"5Change this instance-reference to a static reference.(Ã¥†ûÿÿÿÿ8“ÍĞÚ‹1
+X	java:S125ƒ"<This block of commented-out lines of code should be removed.(çè«r8—ÍĞÚ‹1
+[
+java:S1117"8Rename "conn" which hides the field declared at line 21.(şöì¦ùÿÿÿÿ8˜ÍĞÚ‹1
+R
+java:S2209¢"5Change this instance-reference to a static reference.(’¢‰38˜ÍĞÚ‹1
+N
+java:S1068",Remove this unused "FINDBYID" private field.(”“•ùÿÿÿÿ8œÍĞÚ‹1

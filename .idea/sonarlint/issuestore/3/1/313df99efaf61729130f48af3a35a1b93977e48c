@@ -1,0 +1,12 @@
+
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ä”òª8‚êÅ‹‹1
+q
+java:S2095'"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ñû°øÿÿÿÿ8ÔİĞ ‹1
+l
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ˆ·Ş8ÔİĞ ‹1
+R
+java:S2209"5Change this instance-reference to a static reference.(ˆ·Ş8êİĞ ‹1
+W
+java:S2209'"5Change this instance-reference to a static reference.(ñû°øÿÿÿÿ8”ŞĞ ‹1
+E
+java:S1068"(Remove this unused "conn" private field.(·ššÔ8¦êÅ‹‹1

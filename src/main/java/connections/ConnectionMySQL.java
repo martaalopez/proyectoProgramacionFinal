@@ -1,6 +1,5 @@
 package connections;
 
-import model.product;
 
 import java.io.File;
 import java.sql.*;
@@ -15,7 +14,7 @@ public class ConnectionMySQL {
 
     private String file = "conexion.xml";
     private static ConnectionMySQL _newInstance;
-    private static Connection connection;
+    public static Connection connection;
     private static Statement statement;
 
     public ConnectionMySQL() {
@@ -85,4 +84,6 @@ public class ConnectionMySQL {
     }
 
 
+    public void close() {
+    }
 }

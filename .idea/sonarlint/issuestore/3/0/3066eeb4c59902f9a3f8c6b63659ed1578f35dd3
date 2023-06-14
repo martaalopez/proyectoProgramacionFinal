@@ -1,0 +1,55 @@
+
+k	java:S117U"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(±àµñúÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ä”òª
+f
+java:S2095Ô"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(©Ù§
+q
+java:S2095X"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œÖÅœúÿÿÿÿ8óø¸Ì‹1
+r
+java:S2095…"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œÖÅœúÿÿÿÿ8óø¸Ì‹1
+r
+java:S2095§"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ñû°øÿÿÿÿ8ôø¸Ì‹1
+r
+java:S2095¸"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œÖÅœúÿÿÿÿ8ôø¸Ì‹1
+q
+java:S2095j"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ñû°øÿÿÿÿ8ôø¸Ì‹1
+l
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ˆ·Ş8õø¸Ì‹1
+ƒ
+java:S4165"hRemove this useless assignment; "connection" already holds the assigned value along all execution paths.(½Ãíòúÿÿÿÿ
+ƒ
+java:S4165"hRemove this useless assignment; "connection" already holds the assigned value along all execution paths.(½Ãíòúÿÿÿÿ
+—
+java:S1186J"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(š––å
+–
+java:S1186w"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(©éÑr
+G
+java:S1172"1Remove this unused method parameter "conexionBD".(‹”›Š
+R
+java:S2209"5Change this instance-reference to a static reference.(ˆ·Ş8ù¸Ì‹1
+W
+java:S22096"5Change this instance-reference to a static reference.(ÛúÌ¸ıÿÿÿÿ8°ù¸Ì‹1
+W
+java:S2209X"5Change this instance-reference to a static reference.(œÖÅœúÿÿÿÿ8Èù¸Ì‹1
+W
+java:S2209j"5Change this instance-reference to a static reference.(ñû°øÿÿÿÿ8Ñù¸Ì‹1
+X
+java:S2209…"5Change this instance-reference to a static reference.(œÖÅœúÿÿÿÿ8Şù¸Ì‹1
+T
+java:S1117–"8Rename "conn" which hides the field declared at line 18.(í‡ÀÊùÿÿÿÿ
+X
+java:S2209–"5Change this instance-reference to a static reference.(í‡ÀÊùÿÿÿÿ8÷ù¸Ì‹1
+X
+java:S2209§"5Change this instance-reference to a static reference.(ñû°øÿÿÿÿ8ÿù¸Ì‹1
+X
+java:S2209¸"5Change this instance-reference to a static reference.(œÖÅœúÿÿÿÿ8‡ú¸Ì‹1
+T
+java:S1117Ê"8Rename "conn" which hides the field declared at line 18.(şöì¦ùÿÿÿÿ
+R
+java:S2209Ğ"5Change this instance-reference to a static reference.(’¢‰38‘ú¸Ì‹1
+Q
+java:S1656"/Remove or correct this useless self-assignment.(½Ãíòúÿÿÿÿ8™ú¸Ì‹1
+Q
+java:S1656"/Remove or correct this useless self-assignment.(½Ãíòúÿÿÿÿ8šú¸Ì‹1
+>
+java:S1068"(Remove this unused "conn" private field.(·ššÔ

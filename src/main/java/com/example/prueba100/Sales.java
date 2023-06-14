@@ -1,7 +1,7 @@
 package com.example.prueba100;
 
-import DAO.clientDAO;
-import DAO.product_orderDAO;
+import DAO.ClientDAO;
+import DAO.Product_orderDAO;
 import connections.ConnectionMySQL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,7 +45,7 @@ public class Sales implements Initializable {
 
     public void initialize(URL location, ResourceBundle resources) {
         // Obtener datos del DAO
-        product_orderDAO productOrderDAO = new product_orderDAO(connection);
+        Product_orderDAO productOrderDAO = new Product_orderDAO(connection);
         List<XYChart.Data<String, Integer>> chartData = productOrderDAO.getProductOrderChartDataWithNames();
 
         // Configurar ejes de la gráfica
@@ -61,7 +61,8 @@ public class Sales implements Initializable {
         // Agregar datos a la gráfica
         barChart.getData().add(series);
 
-        clientDAO clientDAO = new clientDAO(connection);
+        ConnectionMySQL conexionBD = new ConnectionMySQL();
+        ClientDAO clientDAO = new ClientDAO(conexionBD);
         int totalClientes = clientDAO.getClientTotal();
         if (totalCustomers != null) {
             totalCustomers.setText(Integer.toString(totalClientes));
@@ -75,21 +76,21 @@ public class Sales implements Initializable {
     }
     @FXML
     void gotoProduct(ActionEvent event) throws IOException {
-        App.setRoot("crud");
+        App.setRoot("Crud");
     }
 
     @FXML
     void gotoclient(ActionEvent event) throws IOException {
-        App.setRoot("orders");
+        App.setRoot("Orders");
     }
 
     @FXML
     void gotoshop(ActionEvent event) throws IOException {
-        App.setRoot("shop");
+        App.setRoot("Shop");
     }
 
     @FXML
     void gotosupplier(ActionEvent event) throws IOException {
-        App.setRoot("crudSupplier");
+        App.setRoot("CrudSupplier");
     }
 }

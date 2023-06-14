@@ -1,0 +1,29 @@
+
+g	java:S112K"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ï¨üÛ‹1
+g	java:S112Y"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ï¨üÛ‹1
+n	java:S117‚"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(²˜Ì8ô¨üÛ‹1
+l
+java:S2095‚"NUse try-with-resources or close this "Product_orderDAO" in a "finally" clause.(²˜Ì8·Ñ’Ü‹1
+j
+java:S2095B"HUse try-with-resources or close this "ProductDAO" in a "finally" clause.(ç¢±×ûÿÿÿÿ8Ş©üÛ‹1
+x	java:S116'"WRename this field "txt_username" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ûÑ‹ùÿÿÿÿ8à©üÛ‹1
+z
+java:S14509"XRemove the "clientDAO" field and declare it as a local variable in the relevant methods.(¨ÊÇÕúÿÿÿÿ8å©üÛ‹1
+R
+java:S2209A"5Change this instance-reference to a static reference.(¡ô¤£8ö©üÛ‹1
+:
+java:S2119V"Save and re-use this "Random".(¼İÅf8„ªüÛ‹1
+V
+java:S1854b":Remove this useless assignment to local variable "random".(¼İÅf8ˆªüÛ‹1
+‹
+java:S1130a"nRemove the declaration of thrown exception 'java.sql.SQLException', as it cannot be thrown from method's body.(ƒöÎ¯8úÄ•Ü‹1
+:
+java:S2119b"Save and re-use this "Random".(¼İÅf8ŠªüÛ‹1
+G
+java:S1481b"+Remove this unused "random" local variable.(¼İÅf8ŒªüÛ‹1
+;
+java:S2119¡"Save and re-use this "Random".(¼İÅf8€åœÜ‹1
+I
+java:S10685",Remove this unused "objOrder" private field.(ı‹÷å8«ªüÛ‹1
+J
+java:S10686"-Remove this unused "objClient" private field.(ä€…‡8«ªüÛ‹1

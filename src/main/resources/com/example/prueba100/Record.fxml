@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prueba100.RecordController">
+    <children>
+        <SplitPane prefHeight="401.0" prefWidth="594.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-background-color: #E5E5E5;">
+                    <children>
+                        <TableView fx:id="productTableView" layoutX="119.0" layoutY="57.0" prefHeight="344.0" prefWidth="350.0" style="-fx-background-color: #D8E2E5;">
+                            <columns>
+                                <TableColumn fx:id="columnidproduct" prefWidth="94.3999879360199" text="ID Producto" />
+                                <TableColumn fx:id="columnidclient" prefWidth="91.20001220703125" text="ID Cliente" />
+                                <TableColumn fx:id="columnUnit" prefWidth="79.20004272460938" text="Unidad" />
+                                <TableColumn fx:id="columnidorder" prefWidth="81.60003662109375" text="ID Pedido" />
+                            </columns>
+                        </TableView>
+                        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToInicio" style="-fx-background-color: #6B898E; -fx-text-fill: #FFFFFF;" text="Menú" />
+                        <TextField fx:id="search" layoutX="232.0" layoutY="27.0" onAction="#searchOrder" />
+                        <Label layoutX="190.0" layoutY="31.0" text="Name" textFill="#000000" />
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>
