@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<FlowPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="651.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prueba100.Sales">
+<FlowPane fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="501.0" prefWidth="701.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prueba100.Sales">
     <children>
         <Pane fx:id="pane1" prefHeight="128.0" prefWidth="785.0">
             <opaqueInsets>
@@ -15,28 +15,23 @@
                 <Region layoutX="139.0" layoutY="30.0" prefHeight="99.0" prefWidth="154.0" />
                 <Region layoutX="320.0" layoutY="29.0" prefHeight="58.0" prefWidth="161.0" />
                 <Region layoutX="180.0" layoutY="30.0" prefHeight="65.0" prefWidth="146.0" />
-                <Region layoutY="1.0" prefHeight="441.0" prefWidth="180.0" style="-fx-background-color: #b7e8e0;" />
+                <Region layoutY="1.0" prefHeight="501.0" prefWidth="180.0" style="-fx-background-color: #98a1a4;" />
                 <Label layoutX="32.0" layoutY="22.0" text="MENU" />
                 <Button layoutX="23.0" layoutY="63.0" mnemonicParsing="false" onAction="#gotoProduct" prefHeight="25.0" prefWidth="106.0" text="PRODUCT" />
                 <Button layoutX="23.0" layoutY="133.0" mnemonicParsing="false" onAction="#gotoclient" prefHeight="25.0" prefWidth="106.0" text="CLIENTS" />
-                <Button layoutX="23.0" layoutY="193.0" mnemonicParsing="false" onAction="#gotoshop" prefHeight="25.0" prefWidth="106.0" text="SHOP" />
-                <Button layoutX="23.0" layoutY="251.0" mnemonicParsing="false" onAction="#gotosupplier" prefHeight="25.0" prefWidth="106.0" text="SUPPLIERS" />
-            </children>
-        </Pane>
-        <Pane prefHeight="317.0" prefWidth="446.0">
-            <FlowPane.margin>
-                <Insets left="200.0" />
-            </FlowPane.margin>
-            <children>
-                <BarChart fx:id="barChart" layoutX="-14.0" layoutY="-101.0" prefHeight="378.0" prefWidth="446.0">
-                    <xAxis>
-                        <CategoryAxis fx:id="id_product" side="BOTTOM" />
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis fx:id="unitOrder" side="LEFT" />
-                    </yAxis>
-                </BarChart>
-            <TextField fx:id="totalCustomers" layoutX="131.0" layoutY="277.0" prefHeight="25.0" prefWidth="64.0" />
+                <Button layoutX="23.0" layoutY="194.0" mnemonicParsing="false" onAction="#gotosupplier" prefHeight="25.0" prefWidth="106.0" text="SUPPLIERS" />
+              <Pane layoutX="170.0" layoutY="60.0" prefHeight="317.0" prefWidth="446.0">
+                  <children>
+                      <BarChart fx:id="barChart" layoutX="21.0" layoutY="-41.0" prefHeight="470.0" prefWidth="501.0">
+                          <xAxis>
+                              <CategoryAxis fx:id="id_product" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                              <NumberAxis fx:id="unitOrder" side="LEFT" />
+                          </yAxis>
+                      </BarChart>
+                  </children>
+              </Pane>
             </children>
         </Pane>
     </children>

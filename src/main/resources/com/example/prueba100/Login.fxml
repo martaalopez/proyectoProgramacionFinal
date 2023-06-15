@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #98a1a4;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prueba100.LoginController">
+    <children>
+        <Pane layoutX="127.0" layoutY="142.0" prefHeight="330.0" prefWidth="510.0" style="-fx-background-color: rgba(255, 255, 255, 0.65); -fx-background-radius: 60;">
+            <children>
+                <GridPane alignment="CENTER" layoutX="87.0" prefHeight="196.0" prefWidth="337.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.20001220703125" minWidth="0.0" prefWidth="0.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="550.0" minWidth="10.0" prefWidth="382.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.60000000000002" minWidth="0.0" prefWidth="0.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints maxHeight="149.0" minHeight="0.0" prefHeight="75.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="258.0" minHeight="10.0" prefHeight="214.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="194.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <VBox prefHeight="190.0" prefWidth="334.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <children>
+                                <Pane prefHeight="19.0" prefWidth="340.0" />
+                                <Pane prefHeight="48.0" prefWidth="337.0">
+                           <children>
+                              <ComboBox fx:id="type_up" layoutX="188.0" layoutY="11.0" prefWidth="150.0" promptText="Choose Type" />
+                           </children></Pane>
+                                <TextField fx:id="txt_username" prefHeight="50.0" prefWidth="340.0" text="Username">
+                                   </TextField>
+                            </children>
+                        </VBox>
+                    </children>
+                </GridPane>
+                <Button fx:id="btn_login" alignment="CENTER" contentDisplay="CENTER" layoutX="127.0" layoutY="251.0" mnemonicParsing="false" onAction="#btnHomeValidate" prefHeight="42.0" prefWidth="107.0" style="-fx-background-radius: 15; -fx-background-color: #C7E4EE;" text="Login" textFill="#3e3030">
+
+                </Button>
+            <Button layoutX="286.0" layoutY="251.0" mnemonicParsing="false" onAction="#btnSignUp" prefHeight="42.0" prefWidth="107.0" style="-fx-background-radius: 15; -fx-background-color: #C7E4EE;" text="SignUp" />
+            </children></Pane>
+        <Label fx:id="labelUser" alignment="CENTER" layoutX="1.0" layoutY="345.0" prefHeight="18.0" prefWidth="630.0" textAlignment="CENTER" />
+        <Pane layoutX="287.0" layoutY="37.0" prefHeight="156.0" prefWidth="163.0" style="-fx-background-color: #C7E4EE; -fx-background-radius: 500;">
+            <children>
+                <Pane layoutX="15.0" layoutY="5.0" prefHeight="146.0" prefWidth="134.0" style="-fx-background-image: url(https://cdn-icons-png.flaticon.com/512/456/456212.png); -fx-background-position: center center; -fx-background-size: 90 90; -fx-background-repeat: no-repeat;" />
+            </children>
+        </Pane>
+              <PasswordField fx:id="txt_password" layoutX="212.0" layoutY="319.0" prefHeight="50.0" prefWidth="340.0" />
+    </children>
+
+</AnchorPane>
