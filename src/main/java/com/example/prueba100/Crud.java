@@ -1,14 +1,18 @@
 package com.example.prueba100;
 
+<<<<<<< HEAD:src/main/java/com/example/prueba100/crud.java
 import DAO.productDAO;
 import DAO.supplierDAO;
+=======
+import DAO.ProductDAO;
+>>>>>>> final:src/main/java/com/example/prueba100/Crud.java
 import connections.ConnectionMySQL;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import model.product;
+import model.Product;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import java.io.IOException;
@@ -18,55 +22,57 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import org.controlsfx.control.Notifications;
 
-public class crud  implements Initializable {
+public class Crud implements Initializable {
     @FXML
-    private TableColumn<product, String> columnDescription;
+    private TableColumn<Product, String> columnDescription; // Table column for product description
 
     @FXML
-    private TableColumn<product, Integer> columnID;
+    private TableColumn<Product, Integer> columnID; // Table column for product ID
 
     @FXML
-    private TableColumn<product, Integer> columnUnit;
+    private TableColumn<Product, Integer> columnUnit; // Table column for product unit
 
     @FXML
-    private TableColumn<product, Double> columnSale;
+    private TableColumn<Product, Double> columnSale; // Table column for product sale price
 
     @FXML
-    private TableColumn<product, Double> columnSupplier;
+    private TableColumn<Product, Double> columnSupplier; // Table column for product supplier price
 
     @FXML
-    private TableView<product> productTableView;
+    private TableView<Product> productTableView; // Table view for displaying products
 
     @FXML
-    private Button tbndelete;
+    private Button tbndelete; // Delete button
 
     @FXML
-    private Button tbninsert;
+    private Button tbninsert; // Insert button
 
     @FXML
-    private TextField txtdescription;
+    private TextField txtdescription; // Text field for product description
 
     @FXML
-    private TextField txtid;
+    private TextField txtid; // Text field for product ID
 
     @FXML
-    private TextField txtunit;
+    private TextField txtunit; // Text field for product unit
 
     @FXML
-    private Button tbnedit;
-    @FXML
-    private TextField txtSale;
+    private Button tbnedit; // Edit button
 
     @FXML
-    private TextField txtSupplier;
+    private TextField txtSale; // Text field for product sale price
 
-    private ConnectionMySQL conexionBD=new ConnectionMySQL();
-    private productDAO productDAO;
-    ObservableList<product> listaProduct= FXCollections.observableArrayList();
-    private final ObjectProperty<product> objProduct=new SimpleObjectProperty<>();
+    @FXML
+    private TextField txtSupplier; // Text field for product supplier price
+
+    private ConnectionMySQL conexionBD = new ConnectionMySQL(); // Object for MySQL database connection
+    private ProductDAO productDAO; // DAO object for products
+    ObservableList<Product> listaProduct = FXCollections.observableArrayList(); // Observable list for products
+    private final ObjectProperty<Product> objProduct = new SimpleObjectProperty<>(); // Selected product object
+
     @FXML
     void goToInicio(ActionEvent event) throws IOException {
-        App.setRoot("inicio");
+        App.setRoot("Inicio"); // Go to "Inicio" page
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -74,24 +80,34 @@ public class crud  implements Initializable {
         columnDescription.setCellValueFactory(param -> new SimpleStringProperty(param.getValue().getDescription()));
         columnUnit.setCellValueFactory(param -> new SimpleIntegerProperty(param.getValue().getUnit()).asObject());
         columnSale.setCellValueFactory(param -> new SimpleDoubleProperty(param.getValue().getSale_price()).asObject());
-       columnSupplier.setCellValueFactory(param->new SimpleDoubleProperty(param.getValue().getSupplier_price()).asObject());
+        columnSupplier.setCellValueFactory(param -> new SimpleDoubleProperty(param.getValue().getSupplier_price()).asObject());
         listarProduct();
         productTableView.setItems(listaProduct);
-        /*poder hacer validaciones*/
+        // Bind the selected product to the object property
         objProduct.bind(productTableView.getSelectionModel().selectedItemProperty());
     }
+
     @FXML
     void Delete(ActionEvent event) throws SQLException {
+<<<<<<< HEAD:src/main/java/com/example/prueba100/crud.java
         /* hacemos una alerta */
+=======
+        // Show confirmation alert for product deletion
+>>>>>>> final:src/main/java/com/example/prueba100/Crud.java
         Alert a = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete the product?", ButtonType.YES, ButtonType.NO);
         a.setHeaderText(this.objProduct.get().getDescription());
         if (a.showAndWait().get() == ButtonType.YES) {
             ConnectionMySQL.getConnect();
+<<<<<<< HEAD:src/main/java/com/example/prueba100/crud.java
             productDAO = new productDAO(conexionBD);
 
             int productId = objProduct.get().getId_product();
             productDAO.eliminar(productId);
 
+=======
+            productDAO = new ProductDAO(conexionBD);
+            productDAO.eliminar(objProduct.get().getId_product());
+>>>>>>> final:src/main/java/com/example/prueba100/Crud.java
             listarProduct();
         }
     }
@@ -102,19 +118,19 @@ public class crud  implements Initializable {
     void Insert(ActionEvent event) {
         if (!txtid.getText().isEmpty() && !txtdescription.getText().isEmpty() && !txtunit.getText().isEmpty()) {
             String idText = txtid.getText();
-            if (idText.matches("\\d{5}")) { // Verificar que el ID tenga exactamente 5 números
+            if (idText.matches("\\d{5}")) { // Verify that the ID contains exactly 5 numbers
                 int id_product = Integer.parseInt(idText);
                 int unit = Integer.parseInt(txtunit.getText());
-                double salePrice = Double.parseDouble(txtSale.getText().replace(",", ".")); // Reemplazar coma por punto
-                double supplierPrice = Double.parseDouble(txtSupplier.getText().replace(",", ".")); // Reemplazar coma por punto
-                product p = new product();
+                double salePrice = Double.parseDouble(txtSale.getText().replace(",", ".")); // Replace comma with dot
+                double supplierPrice = Double.parseDouble(txtSupplier.getText().replace(",", ".")); // Replace comma with dot
+                Product p = new Product();
                 p.setId_product(id_product);
                 p.setDescription(txtdescription.getText());
                 p.setUnit(unit);
                 p.setSale_price(salePrice);
                 p.setSupplier_price(supplierPrice);
                 this.conexionBD.getConnect();
-                productDAO = new productDAO(conexionBD);
+                productDAO = new ProductDAO(conexionBD);
                 productDAO.guardar(p);
                 listarProduct();
             } else {
@@ -124,26 +140,30 @@ public class crud  implements Initializable {
             Notifications.create().title("Warning").text("Please complete all fields.").showWarning();
         }
     }
+<<<<<<< HEAD:src/main/java/com/example/prueba100/crud.java
+=======
+
+>>>>>>> final:src/main/java/com/example/prueba100/Crud.java
     public void listarProduct() {
         try {
             this.conexionBD.getConnect();
-            productDAO = new productDAO(conexionBD);
+            productDAO = new ProductDAO(conexionBD);
             listaProduct.setAll(productDAO.getAll());
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
+
     @FXML
     void Edit(ActionEvent event) {
-
-        // Obtenemos el producto seleccionado de la tabla
-        product selectedProduct = objProduct.get();
-        // Creamos una ventana para que el usuario pueda editar los valores del producto
-        Dialog<product> dialog = new Dialog<>();
+        // Get the selected product from the table
+        Product selectedProduct = objProduct.get();
+        // Create a dialog for the user to edit the product values
+        Dialog<Product> dialog = new Dialog<>();
         dialog.setTitle("Edit");
         dialog.setHeaderText("Enter the new product values:");
 
-        // Creamos los campos de texto para que el usuario pueda ingresar los nuevos valores
+        // Create text fields for the user to enter the new values
         TextField idField = new TextField(String.valueOf(selectedProduct.getId_product()));
         idField.setEditable(false);
         TextField descriptionField = new TextField(selectedProduct.getDescription());
@@ -151,7 +171,7 @@ public class crud  implements Initializable {
         TextField saleField = new TextField(String.valueOf(selectedProduct.getSale_price()));
         TextField supplierField = new TextField(String.valueOf(selectedProduct.getSupplier_price()));
 
-        // Agregamos los campos de texto a la ventana
+        // Add the text fields to the dialog
         GridPane grid = new GridPane();
         grid.add(new Label("ID:"), 1, 1);
         grid.add(idField, 2, 1);
@@ -161,16 +181,15 @@ public class crud  implements Initializable {
         grid.add(unitField, 2, 3);
         grid.add(new Label("Sale price:"), 1, 4);
         grid.add(saleField, 2, 4);
-        grid.add(new Label(
-                "supplier price:"), 1, 5);
+        grid.add(new Label("Supplier price:"), 1, 5);
         grid.add(supplierField, 2, 5);
         dialog.getDialogPane().setContent(grid);
 
-        // Agregamos los botones de "Guardar" y "Cancelar"
-        ButtonType saveButtonType = new ButtonType("Guardar", ButtonBar.ButtonData.OK_DONE);
+        // Add "Save" and "Cancel" buttons
+        ButtonType saveButtonType = new ButtonType("Save", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);
 
-        // Cuando el usuario presiona el botón de "Guardar", guardamos los cambios en la base de datos
+        // When the user clicks "Save", update the changes in the database
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == saveButtonType) {
                 selectedProduct.setDescription(descriptionField.getText());
@@ -179,7 +198,7 @@ public class crud  implements Initializable {
                 selectedProduct.setSupplier_price(Double.parseDouble(supplierField.getText()));
                 try {
                     this.conexionBD.getConnect();
-                    productDAO = new productDAO(conexionBD);
+                    productDAO = new ProductDAO(conexionBD);
                     productDAO.actualizar(selectedProduct);
                     listarProduct();
                 } catch (Exception ex) {
@@ -192,6 +211,5 @@ public class crud  implements Initializable {
 
         dialog.showAndWait();
     }
-
-
 }
+

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prueba100.RecordController">
+    <children>
+        <SplitPane prefHeight="401.0" prefWidth="594.0">
+            <items>
+                <AnchorPane minHeight="500.0" minWidth="700.0" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #E5E5E5;">
+                    <children>
+                        <TableView fx:id="productTableView" layoutX="206.0" layoutY="78.0" prefHeight="344.0" prefWidth="350.0" style="-fx-background-color: #D8E2E5;">
+                            <columns>
+                                <TableColumn fx:id="columnidproduct" prefWidth="94.3999879360199" text="Id product" />
+                                <TableColumn fx:id="columnidclient" prefWidth="91.20001220703125" text="Id client" />
+                                <TableColumn fx:id="columnUnit" prefWidth="79.20004272460938" text="Id Order" />
+                                <TableColumn fx:id="columnidorder" prefWidth="81.60003662109375" text="Unit" />
+                            </columns>
+                        </TableView>
+                        <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToInicio" style="-fx-background-color: #6B898E; -fx-text-fill: #FFFFFF;" text="Menú" />
+                        <TextField fx:id="search" layoutX="306.0" layoutY="27.0" onAction="#searchOrder" />
+                        <Label layoutX="236.0" layoutY="31.0" text="Name" textFill="#000000" />
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>

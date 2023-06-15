@@ -1,7 +1,7 @@
 package com.example.prueba100;
 
-import DAO.productDAO;
-import DAO.supplierDAO;
+import DAO.ProductDAO;
+import DAO.SupplierDAO;
 import connections.ConnectionMySQL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,25 +9,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import model.product;
-import model.supplier;
+import model.Product;
+import model.Supplier;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class supplierCheck implements Initializable {
-
+public class SupplierCheck implements Initializable {
 
     @FXML
     private ComboBox<String> chooseCity;
 
     @FXML
-    private ComboBox<product> chooseProduct;
+    private ComboBox<Product> chooseProduct;
 
     @FXML
     private TextField id_supplier;
@@ -39,30 +37,22 @@ public class supplierCheck implements Initializable {
     private TextField phoneNumber;
 
     @FXML
-    private ListView<product> productList;
+    private ListView<Product> productList;
 
-    private ObservableList<product> productItems;
-    private supplierDAO supplierDao;
+    private ObservableList<Product> productItems;
+    private SupplierDAO supplierDao;
     private ConnectionMySQL conexionBD = new ConnectionMySQL();
-    private productDAO productDao;
-
-    private Connection conn = null;
-    private ConnectionMySQL connection;
-
-    public void supplierDAO(ConnectionMySQL conexionBD) {
-        this.connection = conexionBD;
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             conexionBD.getConnect();
-            productDAO productDAO = new productDAO(conexionBD);
-            ObservableList<product> products = FXCollections.observableArrayList(productDAO.getAll());
+            ProductDAO productDAO = new ProductDAO(conexionBD);
+            ObservableList<Product> products = FXCollections.observableArrayList(productDAO.getAll());
             chooseProduct.setItems(products);
 
             conexionBD.getConnect();
-            this.supplierDao = new supplierDAO(conexionBD);
+            this.supplierDao = new SupplierDAO(conexionBD);
             List<String> cities = getCitiesOfSpain();
             chooseCity.getItems().addAll(cities);
 
@@ -74,14 +64,13 @@ public class supplierCheck implements Initializable {
     @FXML
     void insert(ActionEvent event) {
 
-        Integer supplierValue= id_supplier.getLength();
+        Integer supplierValue = id_supplier.getLength();
         String nameValue = name.getText();
         String phoneNumberValue = phoneNumber.getText();
         String selectedCity = chooseCity.getValue();
-        product selectedProduct = chooseProduct.getValue();
+        Product selectedProduct = chooseProduct.getValue();
 
-
-        if (nameValue.isEmpty() || phoneNumberValue.isEmpty() || selectedCity == null || selectedProduct == null || supplierValue==null) {
+        if (nameValue.isEmpty() || phoneNumberValue.isEmpty() || selectedCity == null || selectedProduct == null || supplierValue == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Required fields");
             alert.setHeaderText(null);
@@ -89,12 +78,13 @@ public class supplierCheck implements Initializable {
             alert.showAndWait();
             return;
         }
-        supplier newSupplier = new supplier();
+
+        Supplier newSupplier = new Supplier();
         newSupplier.setId_supplier(supplierValue);
         newSupplier.setName(nameValue);
         newSupplier.setPhoneNumber(phoneNumberValue);
         newSupplier.setAddress(selectedCity);
-        newSupplier.setId_product(selectedProduct.getId_product()); // Asignar el ID del producto seleccionado
+        newSupplier.setId_product(selectedProduct.getId_product()); // Assign the ID of the selected product
         this.supplierDao.guardar(newSupplier);
 
         ObservableList<String> supplierItems = chooseCity.getItems();
@@ -106,17 +96,15 @@ public class supplierCheck implements Initializable {
         chooseCity.getSelectionModel().clearSelection();
         chooseProduct.getSelectionModel().clearSelection();
 
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("successful insertion");
+        alert.setTitle("Successful insertion");
         alert.setHeaderText(null);
-        alert.setContentText(
-                "The provider has been inserted successfully.");
+        alert.setContentText("The provider has been inserted successfully.");
         alert.showAndWait();
     }
 
     private List<String> getCitiesOfSpain() {
-        // Puedes obtener las ciudades desde una base de datos, archivo, o crear una lista manualmente
+        // You can obtain the cities from a database, file, or manually create a list
         return Arrays.asList("Madrid", "Barcelona", "Valencia", "Sevilla", "Zaragoza", "Málaga", "Murcia", "Palma", "Bilbao", "Alicante");
     }
 

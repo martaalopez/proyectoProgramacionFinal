@@ -1,7 +1,7 @@
 package com.example.prueba100;
 
-import DAO.clientDAO;
-import DAO.product_orderDAO;
+import DAO.ClientDAO;
+import DAO.Product_orderDAO;
 import connections.ConnectionMySQL;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -44,24 +44,24 @@ public class Sales implements Initializable {
     private ConnectionMySQL connection = new ConnectionMySQL();
 
     public void initialize(URL location, ResourceBundle resources) {
-        // Obtener datos del DAO
-        product_orderDAO productOrderDAO = new product_orderDAO(connection);
+        // Get data from DAO
+        Product_orderDAO productOrderDAO = new Product_orderDAO(connection);
         List<XYChart.Data<String, Integer>> chartData = productOrderDAO.getProductOrderChartDataWithNames();
 
-        // Configurar ejes de la gráfica
+        // Configure chart axes
         id_product.setLabel("Products name");
-        unitOrder.setLabel(
-                "Number of units sold");
+        unitOrder.setLabel("Number of units sold");
 
-        // Configurar datos de la gráfica
+        // Configure chart data
         XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        series.setName("Most selled products");
+        series.setName("Most sold products");
         series.getData().addAll(chartData);
 
-        // Agregar datos a la gráfica
+        // Add data to the chart
         barChart.getData().add(series);
 
-        clientDAO clientDAO = new clientDAO(connection);
+        ConnectionMySQL conexionBD = new ConnectionMySQL();
+        ClientDAO clientDAO = new ClientDAO(conexionBD);
         int totalClientes = clientDAO.getClientTotal();
         if (totalCustomers != null) {
             totalCustomers.setText(Integer.toString(totalClientes));
@@ -69,27 +69,28 @@ public class Sales implements Initializable {
 
         Label totalCustomersLabel = new Label("TOTAL CUSTOMERS");
         if (totalCustomers != null && totalCustomersLabel != null) {
-            main.getChildren().addAll(totalCustomersLabel ,totalCustomers);
+            main.getChildren().addAll(totalCustomersLabel, totalCustomers);
             totalCustomers.setEditable(false);
         }
     }
+
     @FXML
     void gotoProduct(ActionEvent event) throws IOException {
-        App.setRoot("crud");
+        App.setRoot("Crud");
     }
 
     @FXML
     void gotoclient(ActionEvent event) throws IOException {
-        App.setRoot("orders");
+        App.setRoot("Orders");
     }
 
     @FXML
     void gotoshop(ActionEvent event) throws IOException {
-        App.setRoot("shop");
+        App.setRoot("Shop");
     }
 
     @FXML
     void gotosupplier(ActionEvent event) throws IOException {
-        App.setRoot("crudSupplier");
+        App.setRoot("CrudSupplier");
     }
 }

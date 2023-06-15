@@ -133,7 +133,11 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+<<<<<<< HEAD
             <version>3.8.2</version>
+=======
+            <version>4.13.2</version>
+>>>>>>> final
             <scope>compile</scope>
         </dependency>
         <dependency>
