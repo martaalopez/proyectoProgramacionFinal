@@ -1,0 +1,19 @@
+
+v	java:S116"URename this field "btn_signup" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·ºï—øÿÿÿÿ8ÄìØñ‹1
+v	java:S116"URename this field "txt_dni_up" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ô€ÇÎúÿÿÿÿ8ÅìØñ‹1
+r	java:S116"VRename this field "txt_mail_up" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(³™€®8ÅìØñ‹1
+w	java:S116"VRename this field "txt_name_up" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ú¢ïõüÿÿÿÿ8ÅìØñ‹1
+t	java:S116 "XRename this field "txt_number_up" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶èÁÈ8ÅìØñ‹1
+u	java:S116#"ZRename this field "txt_password_up" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‚ä¡8ÅìØñ‹1
+u	java:S116&"ZRename this field "txt_username_up" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öåÃ)8ÅìØñ‹1
+s	java:S116)"RRename this field "type_up" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŞÙØßùÿÿÿÿ8ÅìØñ‹1
+>
+java:S11700"!Make this final field static too.(ÇíÜ‰8ÅìØñ‹1
+t
+java:S1450,"WRemove the "adminDao" field and declare it as a local variable in the relevant methods.(ı£…¨8ÅìØñ‹1
+R
+java:S2209?"5Change this instance-reference to a static reference.(¡ô¤£8ÉìØñ‹1
+Z
+java:S1117‚"<Rename "adminDao" which hides the field declared at line 44.(ïÒîà8ÑìØñ‹1
+I
+java:S1068,",Remove this unused "adminDao" private field.(ı£…¨8ÓìØñ‹1

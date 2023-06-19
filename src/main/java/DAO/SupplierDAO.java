@@ -6,7 +6,6 @@ import model.Supplier;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,22 +27,6 @@ public class SupplierDAO implements DAO<Supplier>{
     public void guardar(Supplier s) {
         String sql = "INSERT INTO supplier (id_supplier, name, address, phoneNumber, id_product) VALUES (?, ?, ?, ?, ?)";
 
-<<<<<<< HEAD:src/main/java/DAO/supplierDAO.java
-    public void guardar(supplier s) {
-            String sql = "INSERT INTO supplier (id_supplier, name, address, phoneNumber, id_product) VALUES (?, ?, ?, ?, ?)";
-
-            try {
-                PreparedStatement pst = this.connection.getConnect().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                pst.setInt(1, s.getId_supplier());
-                pst.setString(2, s.getName());
-                pst.setString(3, s.getAddress());
-                pst.setString(4, s.getPhoneNumber());
-                pst.setInt(5, s.getId_product());
-                pst.executeUpdate();
-            } catch (SQLException ex) {
-                Logger.getLogger(supplierDAO.class.getName()).log(Level.SEVERE, null, ex);
-            }
-=======
         try {
             PreparedStatement pst = this.connection.getConnect().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             pst.setInt(1, s.getId_supplier());
@@ -54,7 +37,6 @@ public class SupplierDAO implements DAO<Supplier>{
             pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(SupplierDAO.class.getName()).log(Level.SEVERE, null, ex);
->>>>>>> final:src/main/java/DAO/SupplierDAO.java
         }
     }
 

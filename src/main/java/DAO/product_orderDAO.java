@@ -77,8 +77,15 @@ public class Product_orderDAO implements DAO<Product_order>{
     }
 
     @Override
-    public void eliminar(int entity) throws SQLException {
-        // This function should be implemented to delete a Product_order object based on its ID.
+    public void eliminar(int id_product) throws SQLException {
+        String query = "DELETE FROM product_order WHERE id_product = ?";
+        try {
+            PreparedStatement pst = this.connection.getConnect().prepareStatement(query);
+            pst.setInt(1, id_product);
+            pst.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override

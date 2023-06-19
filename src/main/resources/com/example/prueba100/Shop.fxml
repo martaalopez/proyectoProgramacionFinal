@@ -11,7 +11,6 @@
 <AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prueba100.ShopController">
     <children>
         <Label layoutX="109.0" layoutY="157.0" text="Username:" />
-        <TextField fx:id="txt_username" layoutX="194.0" layoutY="153.0" />
 
         <Label layoutX="113.0" layoutY="204.0" text="Client ID:" />
         <TextField fx:id="idClientText" layoutX="194.0" layoutY="200.0" />
@@ -33,5 +32,7 @@
         </TableView>
 
         <Button fx:id="goToMenu" layoutX="464.0" layoutY="46.0" onAction="#goToMenu" style="-fx-background-color: #2196F3; -fx-text-fill: white;" text="Go to Menu" />
+      <Label fx:id="txt_username" layoutX="218.0" layoutY="157.0" prefHeight="18.0" prefWidth="63.0" text="Label" />
+      <Button fx:id="delete" layoutX="405.0" layoutY="405.0" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="26.0" prefWidth="78.0" text="Delete" />
     </children>
 </AnchorPane>

@@ -10,7 +10,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Client;
@@ -22,7 +24,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.Random;
 import java.util.ResourceBundle;
-
 public class ShopController implements Initializable {
     private boolean orderInProgress = false; // Track if an order is already in progress
     private int orderId = 0;
@@ -36,7 +37,7 @@ public class ShopController implements Initializable {
     @FXML
     private Button add;
     @FXML
-    private TextField txt_username;
+    private Label txt_username;
     @FXML
     private TableColumn<Product_order, Integer> colidProduct;
     @FXML
@@ -60,6 +61,8 @@ public class ShopController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         colidProduct.setCellValueFactory(new PropertyValueFactory<>("id_product"));
         colunidades.setCellValueFactory(new PropertyValueFactory<>("unitProduct"));
+        // Configure the username Label
+        txt_username.setText(""); // Establecer un valor inicial vacío
 
         try {
             conexionBD.getConnect();
@@ -68,13 +71,9 @@ public class ShopController implements Initializable {
             productCombo.setItems(productList);
 
             clientDAO = new ClientDAO(conexionBD); // Initialize the ClientDAO object
-            txt_username.textProperty().addListener((observable, oldValue, newValue) -> {
-                try {
-                    idClientText.setText(clientDAO.getClientNameByUsername(newValue));
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
-            });
+
+            // Configure the username Label
+            txt_username.setText(""); // Establecer un valor inicial vacío
 
             // Configure numbers 1 to 10 in the txtUnidades ComboBox
             ObservableList<Integer> unidadesList = FXCollections.observableArrayList();
@@ -91,7 +90,16 @@ public class ShopController implements Initializable {
 
         cart = FXCollections.observableArrayList();
         tablaProductos.setItems(cart);
+
+        // Bind the selectedItemProperty of the table view to the objOrder property
+        tablaProductos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                objOrder.set(newValue.getProduct());
+            }
+        });
     }
+
+
 
     @FXML
     void addToCart(ActionEvent event) throws SQLException {
@@ -166,10 +174,39 @@ public class ShopController implements Initializable {
         return orderId;
     }
 
-
     @FXML
     void goToMenu(ActionEvent event) throws IOException {
         App.setRoot("Login");
+    }
+
+    public void setUsername(String username) {
+        System.out.println("Setting username: " + username);
+        txt_username.setText(username);
+        try {
+            idClientText.setText(clientDAO.getClientNameByUsername(username));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void deleteProduct(ActionEvent event) throws SQLException {
+        Product_order selectedProduct = tablaProductos.getSelectionModel().getSelectedItem();
+
+        if (selectedProduct != null) {
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, "Do you want to delete the product?", ButtonType.YES, ButtonType.NO);
+            confirmationAlert.setHeaderText(String.valueOf(selectedProduct.getId_product()));
+
+
+            if (confirmationAlert.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {
+                Product_orderDAO product_orderDAO = new Product_orderDAO(conexionBD);
+                product_orderDAO.eliminar(selectedProduct.getId_product());
+                cart.remove(selectedProduct);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "No product selected.", ButtonType.OK);
+            alert.showAndWait();
+        }
     }
 
 }

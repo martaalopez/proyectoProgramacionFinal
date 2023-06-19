@@ -8,11 +8,6 @@ module com.example.prueba100 {
     requires java.xml.bind;
     requires junit;
     requires org.testng;
-<<<<<<< HEAD
-   /* requires org.junit.jupiter.api;*/
-=======
-    /* requires org.junit.jupiter.api;*/
->>>>>>> final
 
 
 

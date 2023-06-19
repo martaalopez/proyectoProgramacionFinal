@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #98a1a4;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prueba100.LoginController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #98a1a4;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.prueba100.LoginController">
     <children>
-        <Pane layoutX="127.0" layoutY="142.0" prefHeight="330.0" prefWidth="510.0" style="-fx-background-color: rgba(255, 255, 255, 0.65); -fx-background-radius: 60;">
+        <Pane fx:id="shopView" layoutX="127.0" layoutY="142.0" prefHeight="330.0" prefWidth="510.0" style="-fx-background-color: rgba(255, 255, 255, 0.65); -fx-background-radius: 60;">
             <children>
                 <GridPane alignment="CENTER" layoutX="87.0" prefHeight="196.0" prefWidth="337.0">
                     <columnConstraints>

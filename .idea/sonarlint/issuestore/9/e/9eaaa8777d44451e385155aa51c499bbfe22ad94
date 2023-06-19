@@ -1,0 +1,11 @@
+
+k	java:S117	"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„ãÔûüÿÿÿÿ
+–
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(©éÑr
+0
+java:S2326"T is not used in the class.(³°†7
+c	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ğ¾¥Š
+@
+java:S1905"*Remove this unnecessary cast to "Matcher".(ùö¤
+U
+java:S1118":Add a private constructor to hide the implicit public one.(“³±ûÿÿÿÿ
