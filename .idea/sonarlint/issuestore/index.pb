@@ -12,16 +12,6 @@ f
 ^
 .src/main/java/com/example/prueba100/Sales.java,5\a\5a5b7ad669338484cfccdfb1bd88cd0a71e26f23
 N
-src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
-P
- src/main/java/model/Product.java,0\6\06c2a30bdf9271d833924cab83b8653e90c1ec08
-O
-src/main/java/model/Client.java,b\f\bfded7b637e777f50fe8fcb194e9f89da888e4db
-Q
-!src/main/java/model/Supplier.java,0\1\01e6fd69b8b342837b8c0cd510276f6e331ce86c
-O
-src/main/java/model/Person.java,d\e\de79464f0bdf6673dba8ecb903704c783d5ec95a
-N
 src/main/java/model/Admin.java,2\a\2a8af0e7500c60890bbb75ce444c327cfb2fa4f6
 7
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
