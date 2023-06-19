@@ -13,7 +13,7 @@ public class SupplierTest {
         supplier = new Supplier(1, "Test Supplier", "Test Address", "1234567890", 1);
     }
 
-    
+
 
     @Test
     public void testSetters() {
