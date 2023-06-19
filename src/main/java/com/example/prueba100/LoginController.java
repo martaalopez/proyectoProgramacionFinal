@@ -1,4 +1,5 @@
 package com.example.prueba100;
+
 import DAO.AdminDAO;
 import DAO.ClientDAO;
 import connections.ConnectionMySQL;
@@ -38,6 +39,7 @@ public class LoginController {
 
     @FXML
     private void initialize() {
+        // Initialize the type_up combo box with options
         ObservableList<String> typeOptions = FXCollections.observableArrayList("admin", "client");
         type_up.setItems(typeOptions);
         type_up.getSelectionModel().selectFirst();
@@ -45,55 +47,57 @@ public class LoginController {
 
     @FXML
     private void btnHomeValidate(ActionEvent event) throws IOException {
+        // Retrieve the entered username, password, and selected type
         String username = txt_username.getText();
         String password = txt_password.getText();
         String selectedType = type_up.getValue();
 
+        // Establish a connection to the MySQL database
         ConnectionMySQL conexionBD = new ConnectionMySQL();
 
         try {
             if (selectedType.equalsIgnoreCase("admin")) {
-                // Validar credenciales en la tabla "admin"
+                // Validate credentials in the "admin" table
                 AdminDAO adminDAO = new AdminDAO(conexionBD);
                 boolean credencialesValidas = adminDAO.validarCredenciales(username, password);
                 if (credencialesValidas) {
-                    // Usuario y contraseña son correctos para el administrador
+                    // Username and password are correct for the admin
                     Notifications.create().title(Method.Constants.CORRECT).text(Method.Constants.CORRECT).showWarning();
                     App.setRoot("Inicio");
                 } else {
-                    // Usuario o contraseña incorrectos para el administrador
+                    // Incorrect username or password for the admin
                     Notifications.create().title(Method.Constants.INCORRECT).text(Method.Constants.INCORRECT).showWarning();
                 }
             } else if (selectedType.equalsIgnoreCase("client")) {
-                // Validar credenciales en la tabla "client"
+                // Validate credentials in the "client" table
                 ClientDAO clientDAO = new ClientDAO(conexionBD);
                 boolean credencialesValidas = clientDAO.validarCredenciales(username, password);
                 if (credencialesValidas) {
-                    // Usuario y contraseña son correctos para el cliente
+                    // Username and password are correct for the client
                     Notifications.create().title(Method.Constants.CORRECT).text(Method.Constants.CORRECT).showWarning();
 
-                    // Cargar el archivo FXML del ShopController
+                    // Load the FXML file of the ShopController
                     FXMLLoader shopLoader = new FXMLLoader(getClass().getResource("Shop.fxml"));
                     Parent shopRoot = shopLoader.load();
                     ShopController shopController = shopLoader.getController();
                     shopController.setUsername(username);
 
-                    // Obtener la escena actual y establecer la raíz como el ShopController
+                    // Get the current scene and set the root as the ShopController
                     Scene scene = btn_login.getScene();
                     scene.setRoot(shopRoot);
                 } else {
-                    // Usuario o contraseña incorrectos para el cliente
+                    // Incorrect username or password for the client
                     Notifications.create().title(Method.Constants.INCORRECT).text(Method.Constants.INCORRECT).showWarning();
                 }
             } else {
-                // Tipo seleccionado no válido
+                // Invalid selected type
                 Notifications.create().title(Method.Constants.INCORRECT).text("Tipo seleccionado no válido").showWarning();
             }
         } catch (Exception e) {
-            // Manejo de excepciones
-            e.printStackTrace(); // Opcional: Imprimir información sobre la excepción
+            // Exception handling
+            e.printStackTrace(); // Optional: Print information about the exception
         } finally {
-            // Cerrar la conexión
+            // Close the connection
             if (conexionBD != null) {
                 conexionBD.close();
             }
@@ -105,3 +109,4 @@ public class LoginController {
         App.setRoot("Orders");
     }
 }
+
