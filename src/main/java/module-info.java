@@ -33,4 +33,5 @@ module com.example.prueba100 {
     opens model to javafx.base, junit;
 
     exports com.example.prueba100;
+    opens test to javafx.base, junit;
 }

@@ -1,4 +1,5 @@
-package model;
+package test;
+import model.Product;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,8 +13,6 @@ import org.junit.Test;
         public void setup() {
             product = new Product(12348, "naranjas", 30, 1.9, 1.2);
         }
-
-
 
         @Test
         public void testSetters() {
@@ -29,7 +28,6 @@ import org.junit.Test;
             Assert.assertEquals(1.7, product.getSale_price(), 0.0);
             Assert.assertEquals(1.2, product.getSupplier_price(), 0.0);
         }
-
 
         @Test
         public void testGetId_client() {

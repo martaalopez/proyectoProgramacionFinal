@@ -15,8 +15,6 @@ i
 9src/main/java/com/example/prueba100/ClientController.java,f\2\f2df201e79e7860f60f79073205d0e93799e4cd8
 N
 src/main/java/model/Admin.java,2\a\2a8af0e7500c60890bbb75ce444c327cfb2fa4f6
-7
-pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 ]
 -src/main/java/com/example/prueba100/Menu.java,8\c\8ca205c31730ab5359430f1f82fcb0cf229d1a14
 P

@@ -1,4 +1,6 @@
-package model;
+package test;
+import model.Product;
+import model.Supplier;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
