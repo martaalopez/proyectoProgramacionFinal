@@ -1,17 +1,17 @@
-package test;
-import model.Product;
-import model.Supplier;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SupplierTest {
-    private Supplier supplier;
+    private static Supplier supplier;
 
-    @Before
-    public void setup() {
+    @BeforeAll
+    public static void setup() {
         supplier = new Supplier(1, "Test Supplier", "Test Address", "1234567890", 1);
     }
 
@@ -25,11 +25,11 @@ public class SupplierTest {
         supplier.setPhoneNumber("9876543210");
         supplier.setId_product(2);
 
-        Assert.assertEquals(2, supplier.getId_supplier());
-        Assert.assertEquals("Updated Supplier", supplier.getName());
-        Assert.assertEquals("Updated Address", supplier.getAddress());
-        Assert.assertEquals("9876543210", supplier.getPhoneNumber());
-        Assert.assertEquals(2, (int) supplier.getId_product());
+        assertEquals(2, supplier.getId_supplier());
+        assertEquals("Updated Supplier", supplier.getName());
+        assertEquals("Updated Address", supplier.getAddress());
+        assertEquals("9876543210", supplier.getPhoneNumber());
+        assertEquals(2, (int) supplier.getId_product());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class SupplierTest {
         products.add(new Product(2, "Product 2", 5, 200.0, 100.0));
 
         supplier.setProducts(products);
-        Assert.assertEquals(products, supplier.getProducts());
+        assertEquals(products, supplier.getProducts());
     }
 
 }
