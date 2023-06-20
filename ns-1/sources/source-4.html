@@ -1,0 +1,286 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Product_orderDAO</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">DAO</a>
+</div>
+
+<h1>Coverage Summary for Class: Product_orderDAO (DAO)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Product_orderDAO</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/10)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/100)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package DAO;
+&nbsp;
+&nbsp;import connections.ConnectionMySQL;
+&nbsp;import javafx.scene.chart.XYChart;
+&nbsp;import model.Product_order;
+&nbsp;import java.sql.*;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Objects;
+&nbsp;import java.util.logging.Level;
+&nbsp;import java.util.logging.Logger;
+&nbsp;
+&nbsp;public class Product_orderDAO implements DAO&lt;Product_order&gt;{
+&nbsp;    private static final String FINDBYID = &quot;SELECT * FROM product_order WHERE id_product=?&quot;;
+&nbsp;    private ConnectionMySQL connection;
+&nbsp;
+<b class="nc">&nbsp;    public Product_orderDAO(ConnectionMySQL connection) {</b>
+<b class="nc">&nbsp;        this.connection = connection;</b>
+&nbsp;    }
+<b class="nc">&nbsp;    private Connection conn =null;</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void guardar(Product_order p) {
+<b class="nc">&nbsp;        String sql = null;</b>
+<b class="nc">&nbsp;        if (!Objects.equals(p.getUnitProduct(), &quot;&quot;)) {</b>
+<b class="nc">&nbsp;            sql = &quot;INSERT INTO product_order(id_product, id_client, unitProduct ,id_order) VALUES(&#39;&quot; + p.getId_product() + &quot;&#39;,&#39;&quot;</b>
+<b class="nc">&nbsp;                    + p.getId_client() + &quot;&#39;,&#39;&quot; + p.getUnitProduct() + &quot;&#39;,&#39;&quot;+p.getId_order()+&quot;&#39;)&quot;;</b>
+&nbsp;            // Subtract the purchased units from the units available for the product
+<b class="nc">&nbsp;            String updateSql = &quot;UPDATE product SET unit = unit - &quot; + p.getUnitProduct() + &quot; WHERE id_product = &quot; + p.getId_product();</b>
+&nbsp;            try {
+<b class="nc">&nbsp;                conn = connection.getConnect();</b>
+<b class="nc">&nbsp;                conn.setAutoCommit(false); // Start transaction</b>
+<b class="nc">&nbsp;                PreparedStatement pst = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);</b>
+<b class="nc">&nbsp;                pst.executeUpdate();</b>
+<b class="nc">&nbsp;                PreparedStatement updatePst = conn.prepareStatement(updateSql);</b>
+<b class="nc">&nbsp;                updatePst.executeUpdate();</b>
+<b class="nc">&nbsp;                conn.commit(); // Commit transaction</b>
+<b class="nc">&nbsp;            } catch (SQLException ex) {</b>
+&nbsp;                try {
+<b class="nc">&nbsp;                    if (conn != null) {</b>
+<b class="nc">&nbsp;                        conn.rollback(); // Rollback transaction</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                } catch (SQLException e) {</b>
+<b class="nc">&nbsp;                    Logger.getLogger(Product_orderDAO.class.getName()).log(Level.SEVERE, null, e);</b>
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;                Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);</b>
+&nbsp;            } finally {
+<b class="nc">&nbsp;                try {</b>
+<b class="nc">&nbsp;                    if (conn != null) {</b>
+<b class="nc">&nbsp;                        conn.setAutoCommit(true);</b>
+&nbsp;                    }
+<b class="nc">&nbsp;                } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;                    Logger.getLogger(Product_orderDAO.class.getName()).log(Level.SEVERE, null, ex);</b>
+<b class="nc">&nbsp;                }</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public List&lt;Product_order&gt; getAll() throws SQLException {
+<b class="nc">&nbsp;        List&lt;Product_order&gt; list = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;        Product_order p = null;</b>
+<b class="nc">&nbsp;        ResultSet rs = this.connection.consultar(&quot;SELECT id_product, id_client, unitProduct,id_order FROM product_order&quot;);</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            while (rs.next()) {</b>
+<b class="nc">&nbsp;                p = new Product_order();</b>
+<b class="nc">&nbsp;                p.setId_product(rs.getInt(&quot;id_product&quot;));</b>
+<b class="nc">&nbsp;                p.setId_client(rs.getString(&quot;id_client&quot;));</b>
+<b class="nc">&nbsp;                p.setId_order(rs.getInt(&quot;id_order&quot;));</b>
+<b class="nc">&nbsp;                p.setUnitProduct(rs.getInt(&quot;unitProduct&quot;));</b>
+<b class="nc">&nbsp;                list.add(p);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return list;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void eliminar(int id_product) throws SQLException {
+<b class="nc">&nbsp;        String query = &quot;DELETE FROM product_order WHERE id_product = ?&quot;;</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            PreparedStatement pst = this.connection.getConnect().prepareStatement(query);</b>
+<b class="nc">&nbsp;            pst.setInt(1, id_product);</b>
+<b class="nc">&nbsp;            pst.executeUpdate();</b>
+<b class="nc">&nbsp;        } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void actualizar(Product_order entity) throws SQLException {
+&nbsp;        // This function should be implemented to update a Product_order object.
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void eliminar(String entity) throws SQLException {
+&nbsp;        // This function should be implemented to delete a Product_order object based on its ID as a String.
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int getClientTotal() {
+<b class="nc">&nbsp;        return 0;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;XYChart.Data&lt;String, Integer&gt;&gt; getProductOrderChartDataWithNames() {
+<b class="nc">&nbsp;        List&lt;XYChart.Data&lt;String, Integer&gt;&gt; chartDataList = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;        String sql = &quot;SELECT p.description, SUM(po.unitProduct) &quot; +</b>
+&nbsp;                &quot;FROM product_order po &quot; +
+&nbsp;                &quot;JOIN product p ON po.id_product = p.id_product &quot; +
+&nbsp;                &quot;GROUP BY po.id_product&quot;;
+<b class="nc">&nbsp;        PreparedStatement pst = null;</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            pst = this.connection.getConnect().prepareStatement(sql);</b>
+<b class="nc">&nbsp;            ResultSet res = pst.executeQuery();</b>
+<b class="nc">&nbsp;            while (res.next()) {</b>
+<b class="nc">&nbsp;                String productName = res.getString(1);</b>
+<b class="nc">&nbsp;                int unitProduct= res.getInt(2);</b>
+<b class="nc">&nbsp;                chartDataList.add(new XYChart.Data&lt;&gt;(productName, unitProduct));</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;        } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);</b>
+&nbsp;        } finally {
+<b class="nc">&nbsp;            try {</b>
+<b class="nc">&nbsp;                if (pst != null) {</b>
+<b class="nc">&nbsp;                    pst.close();</b>
+&nbsp;                }
+<b class="nc">&nbsp;            } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;                Logger.getLogger(Product_orderDAO.class.getName()).log(Level.SEVERE, null, ex);</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return chartDataList;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void close() throws Exception {
+&nbsp;        // This function should be implemented to close the database connection.
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    public List&lt;Product_order&gt; getOrderByClientName(String clientName) throws SQLException {
+<b class="nc">&nbsp;        List&lt;Product_order&gt; orders = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;        Connection conn = null;</b>
+<b class="nc">&nbsp;        PreparedStatement statement = null;</b>
+<b class="nc">&nbsp;        ResultSet resultSet = null;</b>
+&nbsp;
+&nbsp;        try {
+<b class="nc">&nbsp;            conn = connection.getConnect(); // Get the connection</b>
+&nbsp;
+&nbsp;            // Prepare and execute the query
+<b class="nc">&nbsp;            String sql = &quot;SELECT po.id_product, po.id_client, po.unitProduct, po.id_order &quot; +</b>
+&nbsp;                    &quot;FROM client c &quot; +
+&nbsp;                    &quot;JOIN product_order po ON c.id_client = po.id_client &quot; +
+&nbsp;                    &quot;WHERE c.name = ?&quot;;
+<b class="nc">&nbsp;            statement = conn.prepareStatement(sql);</b>
+<b class="nc">&nbsp;            statement.setString(1, clientName);</b>
+<b class="nc">&nbsp;            resultSet = statement.executeQuery();</b>
+&nbsp;
+&nbsp;            // Process the results and create Product_order objects
+<b class="nc">&nbsp;            while (resultSet.next()) {</b>
+<b class="nc">&nbsp;                Product_order order = new Product_order();</b>
+<b class="nc">&nbsp;                order.setId_product(resultSet.getInt(&quot;id_product&quot;));</b>
+<b class="nc">&nbsp;                order.setId_client(resultSet.getString(&quot;id_client&quot;));</b>
+<b class="nc">&nbsp;                order.setUnitProduct(resultSet.getInt(&quot;unitProduct&quot;));</b>
+<b class="nc">&nbsp;                order.setId_order(resultSet.getInt(&quot;id_order&quot;));</b>
+<b class="nc">&nbsp;                orders.add(order);</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;
+<b class="nc">&nbsp;            return orders;</b>
+<b class="nc">&nbsp;        } catch (SQLException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;            throw e;</b>
+&nbsp;        } finally {
+&nbsp;            // Close the resources (resultset and statement) in reverse order
+<b class="nc">&nbsp;            if (resultSet != null) {</b>
+<b class="nc">&nbsp;                resultSet.close();</b>
+&nbsp;            }
+<b class="nc">&nbsp;            if (statement != null) {</b>
+<b class="nc">&nbsp;                statement.close();</b>
+&nbsp;            }
+&nbsp;            // Do not close the connection here, leave it open for future operations
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>

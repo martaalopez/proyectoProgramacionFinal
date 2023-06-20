@@ -1,0 +1,199 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Sales</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.prueba100</a>
+</div>
+
+<h1>Coverage Summary for Class: Sales (com.example.prueba100)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Sales</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/23)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.prueba100;
+&nbsp;
+&nbsp;import DAO.ClientDAO;
+&nbsp;import DAO.Product_orderDAO;
+&nbsp;import connections.ConnectionMySQL;
+&nbsp;import javafx.event.ActionEvent;
+&nbsp;import javafx.fxml.FXML;
+&nbsp;import javafx.fxml.Initializable;
+&nbsp;import javafx.scene.chart.BarChart;
+&nbsp;import javafx.scene.chart.CategoryAxis;
+&nbsp;import javafx.scene.chart.NumberAxis;
+&nbsp;import javafx.scene.chart.XYChart;
+&nbsp;import javafx.scene.control.Label;
+&nbsp;import javafx.scene.control.TextField;
+&nbsp;import javafx.scene.layout.FlowPane;
+&nbsp;import javafx.scene.layout.Pane;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.net.URL;
+&nbsp;import java.util.List;
+&nbsp;import java.util.ResourceBundle;
+&nbsp;
+<b class="nc">&nbsp;public class Sales implements Initializable {</b>
+&nbsp;    @FXML
+&nbsp;    private NumberAxis unitOrder;
+&nbsp;    @FXML
+&nbsp;    private CategoryAxis id_product;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private BarChart&lt;String, Integer&gt; barChart;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private FlowPane main;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private Label totalBenefits;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField totalCustomers;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private Pane pane1;
+&nbsp;
+<b class="nc">&nbsp;    private ConnectionMySQL connection = new ConnectionMySQL();</b>
+&nbsp;
+&nbsp;    public void initialize(URL location, ResourceBundle resources) {
+&nbsp;        // Get data from DAO
+<b class="nc">&nbsp;        Product_orderDAO productOrderDAO = new Product_orderDAO(connection);</b>
+<b class="nc">&nbsp;        List&lt;XYChart.Data&lt;String, Integer&gt;&gt; chartData = productOrderDAO.getProductOrderChartDataWithNames();</b>
+&nbsp;
+&nbsp;        // Configure chart axes
+<b class="nc">&nbsp;        id_product.setLabel(&quot;Products name&quot;);</b>
+<b class="nc">&nbsp;        unitOrder.setLabel(&quot;Number of units sold&quot;);</b>
+&nbsp;
+&nbsp;        // Configure chart data
+<b class="nc">&nbsp;        XYChart.Series&lt;String, Integer&gt; series = new XYChart.Series&lt;&gt;();</b>
+<b class="nc">&nbsp;        series.setName(&quot;Most sold products&quot;);</b>
+<b class="nc">&nbsp;        series.getData().addAll(chartData);</b>
+&nbsp;
+&nbsp;        // Add data to the chart
+<b class="nc">&nbsp;        barChart.getData().add(series);</b>
+&nbsp;
+<b class="nc">&nbsp;        ConnectionMySQL conexionBD = new ConnectionMySQL();</b>
+<b class="nc">&nbsp;        ClientDAO clientDAO = new ClientDAO(conexionBD);</b>
+<b class="nc">&nbsp;        int totalClientes = clientDAO.getClientTotal();</b>
+<b class="nc">&nbsp;        if (totalCustomers != null) {</b>
+<b class="nc">&nbsp;            totalCustomers.setText(Integer.toString(totalClientes));</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        Label totalCustomersLabel = new Label(&quot;TOTAL CUSTOMERS&quot;);</b>
+<b class="nc">&nbsp;        if (totalCustomers != null &amp;&amp; totalCustomersLabel != null) {</b>
+<b class="nc">&nbsp;            main.getChildren().addAll(totalCustomersLabel, totalCustomers);</b>
+<b class="nc">&nbsp;            totalCustomers.setEditable(false);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void gotoProduct(ActionEvent event) throws IOException {
+<b class="nc">&nbsp;        App.setRoot(&quot;Crud&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void gotoclient(ActionEvent event) throws IOException {
+<b class="nc">&nbsp;        App.setRoot(&quot;Orders&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void gotoshop(ActionEvent event) throws IOException {
+<b class="nc">&nbsp;        App.setRoot(&quot;Shop&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void gotosupplier(ActionEvent event) throws IOException {
+<b class="nc">&nbsp;        App.setRoot(&quot;CrudSupplier&quot;);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SupplierTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">test</a>
+</div>
+
+<h1>Coverage Summary for Class: SupplierTest (test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SupplierTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package test;
+&nbsp;import model.Product;
+&nbsp;import model.Supplier;
+&nbsp;import org.junit.Assert;
+&nbsp;import org.junit.Before;
+&nbsp;import org.junit.Test;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;
+<b class="fc">&nbsp;public class SupplierTest {</b>
+&nbsp;    private Supplier supplier;
+&nbsp;
+&nbsp;    @Before
+&nbsp;    public void setup() {
+<b class="fc">&nbsp;        supplier = new Supplier(1, &quot;Test Supplier&quot;, &quot;Test Address&quot;, &quot;1234567890&quot;, 1);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testSetters() {
+<b class="fc">&nbsp;        supplier.setId_supplier(2);</b>
+<b class="fc">&nbsp;        supplier.setName(&quot;Updated Supplier&quot;);</b>
+<b class="fc">&nbsp;        supplier.setAddress(&quot;Updated Address&quot;);</b>
+<b class="fc">&nbsp;        supplier.setPhoneNumber(&quot;9876543210&quot;);</b>
+<b class="fc">&nbsp;        supplier.setId_product(2);</b>
+&nbsp;
+<b class="fc">&nbsp;        Assert.assertEquals(2, supplier.getId_supplier());</b>
+<b class="fc">&nbsp;        Assert.assertEquals(&quot;Updated Supplier&quot;, supplier.getName());</b>
+<b class="fc">&nbsp;        Assert.assertEquals(&quot;Updated Address&quot;, supplier.getAddress());</b>
+<b class="fc">&nbsp;        Assert.assertEquals(&quot;9876543210&quot;, supplier.getPhoneNumber());</b>
+<b class="fc">&nbsp;        Assert.assertEquals(2, (int) supplier.getId_product());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    public void testGetProducts() {
+<b class="fc">&nbsp;        List&lt;Product&gt; products = new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        products.add(new Product(1, &quot;Product 1&quot;, 10, 100.0, 50.0));</b>
+<b class="fc">&nbsp;        products.add(new Product(2, &quot;Product 2&quot;, 5, 200.0, 100.0));</b>
+&nbsp;
+<b class="fc">&nbsp;        supplier.setProducts(products);</b>
+<b class="fc">&nbsp;        Assert.assertEquals(products, supplier.getProducts());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>

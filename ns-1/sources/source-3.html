@@ -1,0 +1,218 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ProductDAO</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">DAO</a>
+</div>
+
+<h1>Coverage Summary for Class: ProductDAO (DAO)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ProductDAO</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/53)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package DAO;
+&nbsp;
+&nbsp;import java.sql.*;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.logging.Level;
+&nbsp;import java.util.logging.Logger;
+&nbsp;
+&nbsp;import connections.ConnectionMySQL;
+&nbsp;
+&nbsp;import model.Product;
+&nbsp;import model.Supplier;
+&nbsp;
+&nbsp;public class ProductDAO implements DAO&lt;Product&gt;{
+&nbsp;    private final static String FINDBYID =&quot;SELECT * FROM product WHERE id_product=?&quot;;
+&nbsp;    private ConnectionMySQL connection;
+&nbsp;
+<b class="nc">&nbsp;    public ProductDAO(ConnectionMySQL connection) {</b>
+<b class="nc">&nbsp;        this.connection = connection;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private Connection conn;
+&nbsp;
+<b class="nc">&nbsp;    public ProductDAO() {</b>
+<b class="nc">&nbsp;        this.conn=ConnectionMySQL.getConnect();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void guardar(Product p) {
+<b class="nc">&nbsp;        String sql = null;</b>
+<b class="nc">&nbsp;        if (!p.getDescription().equals(&quot;&quot;)) {</b>
+<b class="nc">&nbsp;            sql = &quot;INSERT INTO product(id_product, description, unit, supplier_price, sale_price) VALUES(?,?,?,?,?)&quot;;</b>
+&nbsp;        }
+&nbsp;        try {
+<b class="nc">&nbsp;            PreparedStatement pst = this.connection.getConnect().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);</b>
+<b class="nc">&nbsp;            pst.setInt(1, p.getId_product());</b>
+<b class="nc">&nbsp;            pst.setString(2, p.getDescription());</b>
+<b class="nc">&nbsp;            pst.setInt(3, p.getUnit());</b>
+<b class="nc">&nbsp;            pst.setDouble(4, p.getSupplier_price());</b>
+<b class="nc">&nbsp;            pst.setDouble(5, p.getSale_price());</b>
+<b class="nc">&nbsp;            pst.executeUpdate();</b>
+<b class="nc">&nbsp;        } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    public List&lt;Product&gt; getAll() throws SQLException {
+<b class="nc">&nbsp;        List&lt;Product&gt; list = new ArrayList&lt;&gt;();</b>
+<b class="nc">&nbsp;        Product p = null;</b>
+<b class="nc">&nbsp;        ResultSet rs = this.connection.consultar(&quot;SELECT id_product, description, unit,sale_price,supplier_price FROM product&quot;);</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            while (rs.next()) {</b>
+<b class="nc">&nbsp;                p = new Product();</b>
+<b class="nc">&nbsp;                p.setId_product(rs.getInt(&quot;id_product&quot;));</b>
+<b class="nc">&nbsp;                p.setDescription(rs.getString(&quot;description&quot;).trim());</b>
+<b class="nc">&nbsp;                p.setUnit(rs.getInt(&quot;unit&quot;));</b>
+<b class="nc">&nbsp;                p.setSale_price(rs.getDouble(&quot;sale_price&quot;));</b>
+<b class="nc">&nbsp;                p.setSupplier_price(rs.getDouble(&quot;supplier_price&quot;));</b>
+<b class="nc">&nbsp;                list.add(p);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        return list;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    public void eliminar(int  id_product) throws SQLException {
+<b class="nc">&nbsp;        String query = &quot;DELETE FROM product WHERE id_product = ?&quot;;</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            PreparedStatement pst = this.connection.getConnect().prepareStatement(query);</b>
+<b class="nc">&nbsp;            pst.setInt(1, id_product);</b>
+<b class="nc">&nbsp;            pst.executeUpdate();</b>
+<b class="nc">&nbsp;        } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    public void actualizar(Product p) throws SQLException {
+<b class="nc">&nbsp;        String sql = &quot;UPDATE product SET description = ?, unit = ?, sale_price = ?, supplier_price = ? WHERE id_product = ?&quot;;</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            PreparedStatement pst = this.connection.getConnect().prepareStatement(sql);</b>
+<b class="nc">&nbsp;            pst.setString(1, p.getDescription());</b>
+<b class="nc">&nbsp;            pst.setInt(2, p.getUnit());</b>
+<b class="nc">&nbsp;            pst.setDouble(3, p.getSale_price());</b>
+<b class="nc">&nbsp;            pst.setDouble(4, p.getSupplier_price());</b>
+<b class="nc">&nbsp;            pst.setInt(5, p.getId_product());</b>
+<b class="nc">&nbsp;            pst.executeUpdate();</b>
+<b class="nc">&nbsp;        } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void eliminar(String entity) throws SQLException {
+&nbsp;
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int getClientTotal() {
+<b class="nc">&nbsp;        return 0;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void close() throws Exception {
+&nbsp;
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>

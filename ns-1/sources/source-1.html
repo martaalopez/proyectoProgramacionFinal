@@ -1,0 +1,160 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > AdminDAO</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">DAO</a>
+</div>
+
+<h1>Coverage Summary for Class: AdminDAO (DAO)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">AdminDAO</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/26)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package DAO;
+&nbsp;
+&nbsp;import connections.ConnectionMySQL;
+&nbsp;import model.Admin;
+&nbsp;
+&nbsp;import java.sql.*;
+&nbsp;
+&nbsp;public class AdminDAO {
+&nbsp;
+&nbsp;    private ConnectionMySQL connection;
+&nbsp;
+<b class="nc">&nbsp;    private Connection conn = null;</b>
+&nbsp;
+<b class="nc">&nbsp;    public AdminDAO(ConnectionMySQL conexionBD) {</b>
+<b class="nc">&nbsp;        this.connection = conexionBD;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void guardar(Admin o) {
+&nbsp;        // Prepare the SQL statement to insert an admin into the database
+<b class="nc">&nbsp;        String sql = &quot;INSERT INTO admin (phoneNumber, mail, username, password, name, id_client, type) &quot; +</b>
+&nbsp;                &quot;VALUES (?, ?, ?, ?, ?, ?, ?)&quot;;
+&nbsp;        try {
+&nbsp;            // Prepare the statement with the SQL and retrieve the generated keys (auto-generated ID)
+<b class="nc">&nbsp;            PreparedStatement pst = this.connection.getConnect().prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);</b>
+<b class="nc">&nbsp;            pst.setInt(1, o.getPhoneNumber());</b>
+<b class="nc">&nbsp;            pst.setString(2, o.getMail());</b>
+<b class="nc">&nbsp;            pst.setString(3, o.getUsername());</b>
+<b class="nc">&nbsp;            pst.setString(4, o.getPassword());</b>
+<b class="nc">&nbsp;            pst.setString(5, o.getName());</b>
+<b class="nc">&nbsp;            pst.setString(6, o.getId_client());</b>
+<b class="nc">&nbsp;            pst.setString(7, o.getType());</b>
+&nbsp;
+&nbsp;            // Execute the statement to insert the admin into the database
+<b class="nc">&nbsp;            pst.executeUpdate();</b>
+<b class="nc">&nbsp;        } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;            ex.printStackTrace();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public boolean validarCredenciales(String username, String password) throws SQLException {
+&nbsp;        // Prepare the SQL statement to validate admin credentials
+<b class="nc">&nbsp;        String sql = &quot;SELECT * FROM admin WHERE username=? AND password=?&quot;;</b>
+&nbsp;        try {
+&nbsp;            // Prepare the statement with the SQL and set the username and password parameters
+<b class="nc">&nbsp;            PreparedStatement pst = this.connection.getConnect().prepareStatement(sql);</b>
+<b class="nc">&nbsp;            pst.setString(1, username);</b>
+<b class="nc">&nbsp;            pst.setString(2, password);</b>
+&nbsp;
+<b class="nc">&nbsp;            try (ResultSet rs = pst.executeQuery()) {</b>
+<b class="nc">&nbsp;                return rs.next(); // Return true if a matching admin is found, false otherwise</b>
+<b class="nc">&nbsp;            }</b>
+<b class="nc">&nbsp;        } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;            ex.printStackTrace();</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return false; // Return false if an exception occurs</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>

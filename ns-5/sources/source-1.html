@@ -1,0 +1,141 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ProductTest</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">test</a>
+</div>
+
+<h1>Coverage Summary for Class: ProductTest (test)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ProductTest</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (14/14)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package test;
+&nbsp;import model.Product;
+&nbsp;import org.junit.Assert;
+&nbsp;import org.junit.Before;
+&nbsp;import org.junit.Test;
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;    public class ProductTest {</b>
+&nbsp;
+&nbsp;        private Product product;
+&nbsp;
+&nbsp;        @Before
+&nbsp;        public void setup() {
+<b class="fc">&nbsp;            product = new Product(12348, &quot;naranjas&quot;, 30, 1.9, 1.2);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        @Test
+&nbsp;        public void testSetters() {
+<b class="fc">&nbsp;            product.setId_product(12378);</b>
+<b class="fc">&nbsp;            product.setDescription(&quot;manzanas&quot;);</b>
+<b class="fc">&nbsp;            product.setUnit(30);</b>
+<b class="fc">&nbsp;            product.setSale_price(1.7);</b>
+<b class="fc">&nbsp;            product.setSupplier_price(1.2);</b>
+&nbsp;
+<b class="fc">&nbsp;            Assert.assertEquals(12378, product.getId_product());</b>
+<b class="fc">&nbsp;            Assert.assertEquals(&quot;manzanas&quot;, product.getDescription());</b>
+<b class="fc">&nbsp;            Assert.assertEquals(30, product.getUnit());</b>
+<b class="fc">&nbsp;            Assert.assertEquals(1.7, product.getSale_price(), 0.0);</b>
+<b class="fc">&nbsp;            Assert.assertEquals(1.2, product.getSupplier_price(), 0.0);</b>
+&nbsp;        }
+&nbsp;
+&nbsp;        @Test
+&nbsp;        public void testGetId_client() {
+<b class="fc">&nbsp;            String id_client = product.getId_client();</b>
+<b class="fc">&nbsp;            Assert.assertNull(id_client);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>

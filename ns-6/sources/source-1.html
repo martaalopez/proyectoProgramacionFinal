@@ -1,0 +1,165 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Method</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">util</a>
+</div>
+
+<h1>Coverage Summary for Class: Method (util)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Method</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Method$Constants</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package util;
+&nbsp;
+&nbsp;import java.util.regex.Matcher;
+&nbsp;import java.util.regex.Pattern;
+&nbsp;
+<b class="nc">&nbsp;public class Method&lt;T&gt; implements AutoCloseable {</b>
+&nbsp;
+&nbsp;
+&nbsp;    public static boolean validarDNI(String id_client) {
+<b class="nc">&nbsp;        String patron = &quot;\\d{8}[A-HJ-NP-TV-Z]&quot;;</b>
+<b class="nc">&nbsp;        return id_client.matches(patron);</b>
+&nbsp;    }
+&nbsp;    public  static boolean GmailValidate(String gmail) {
+<b class="nc">&nbsp;        String regex = &quot;^[a-zA-Z0-9._%+-]+@gmail\\.com$&quot;;</b>
+<b class="nc">&nbsp;        Pattern pattern = Pattern.compile(regex);</b>
+<b class="nc">&nbsp;        Matcher matcher = pattern.matcher(gmail);</b>
+<b class="nc">&nbsp;        return ((Matcher) matcher).matches();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void close() throws Exception {
+<b class="nc">&nbsp;    }</b>
+&nbsp;
+<b class="nc">&nbsp;    public class Constants {</b>
+&nbsp;        public static final String WARNING_TITLE = &quot;Warning&quot;;
+&nbsp;        public static final String WARNING_ID_WRONG = &quot;The ID is wrong.&quot;;
+&nbsp;        public static final String WARNING_ENTER_GMAIL = &quot;Enter gmail again.&quot;;
+&nbsp;        public static final String WARNING_COMPLETE_FIELDS = &quot;Complete all the fields.&quot;;
+&nbsp;
+&nbsp;        public static final String CORRECT=&quot;Username and password is correct&quot;;
+&nbsp;
+&nbsp;        public static final String INCORRECT=&quot;Invalid username or password&quot;;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>

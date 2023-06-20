@@ -1,0 +1,218 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > SupplierCheck</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.prueba100</a>
+</div>
+
+<h1>Coverage Summary for Class: SupplierCheck (com.example.prueba100)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">SupplierCheck</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/45)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.prueba100;
+&nbsp;
+&nbsp;import DAO.ProductDAO;
+&nbsp;import DAO.SupplierDAO;
+&nbsp;import connections.ConnectionMySQL;
+&nbsp;import javafx.collections.FXCollections;
+&nbsp;import javafx.collections.ObservableList;
+&nbsp;import javafx.event.ActionEvent;
+&nbsp;import javafx.fxml.FXML;
+&nbsp;import javafx.fxml.Initializable;
+&nbsp;import javafx.scene.control.*;
+&nbsp;import model.Product;
+&nbsp;import model.Supplier;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.net.URL;
+&nbsp;import java.sql.SQLException;
+&nbsp;import java.util.Arrays;
+&nbsp;import java.util.List;
+&nbsp;import java.util.ResourceBundle;
+&nbsp;
+<b class="nc">&nbsp;public class SupplierCheck implements Initializable {</b>
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private ComboBox&lt;String&gt; chooseCity;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private ComboBox&lt;Product&gt; chooseProduct;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField id_supplier;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField name;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField phoneNumber;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private ListView&lt;Product&gt; productList;
+&nbsp;
+&nbsp;    private ObservableList&lt;Product&gt; productItems;
+&nbsp;    private SupplierDAO supplierDao;
+<b class="nc">&nbsp;    private ConnectionMySQL conexionBD = new ConnectionMySQL();</b>
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void initialize(URL location, ResourceBundle resources) {
+&nbsp;        try {
+<b class="nc">&nbsp;            conexionBD.getConnect();</b>
+<b class="nc">&nbsp;            ProductDAO productDAO = new ProductDAO(conexionBD);</b>
+<b class="nc">&nbsp;            ObservableList&lt;Product&gt; products = FXCollections.observableArrayList(productDAO.getAll());</b>
+<b class="nc">&nbsp;            chooseProduct.setItems(products);</b>
+&nbsp;
+<b class="nc">&nbsp;            conexionBD.getConnect();</b>
+<b class="nc">&nbsp;            this.supplierDao = new SupplierDAO(conexionBD);</b>
+<b class="nc">&nbsp;            List&lt;String&gt; cities = getCitiesOfSpain();</b>
+<b class="nc">&nbsp;            chooseCity.getItems().addAll(cities);</b>
+&nbsp;
+<b class="nc">&nbsp;        } catch (SQLException e) {</b>
+<b class="nc">&nbsp;            e.printStackTrace();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void insert(ActionEvent event) {
+&nbsp;
+<b class="nc">&nbsp;        Integer supplierValue = id_supplier.getLength();</b>
+<b class="nc">&nbsp;        String nameValue = name.getText();</b>
+<b class="nc">&nbsp;        String phoneNumberValue = phoneNumber.getText();</b>
+<b class="nc">&nbsp;        String selectedCity = chooseCity.getValue();</b>
+<b class="nc">&nbsp;        Product selectedProduct = chooseProduct.getValue();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (nameValue.isEmpty() || phoneNumberValue.isEmpty() || selectedCity == null || selectedProduct == null || supplierValue == null) {</b>
+<b class="nc">&nbsp;            Alert alert = new Alert(Alert.AlertType.WARNING);</b>
+<b class="nc">&nbsp;            alert.setTitle(&quot;Required fields&quot;);</b>
+<b class="nc">&nbsp;            alert.setHeaderText(null);</b>
+<b class="nc">&nbsp;            alert.setContentText(&quot;Please complete all required fields.&quot;);</b>
+<b class="nc">&nbsp;            alert.showAndWait();</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        Supplier newSupplier = new Supplier();</b>
+<b class="nc">&nbsp;        newSupplier.setId_supplier(supplierValue);</b>
+<b class="nc">&nbsp;        newSupplier.setName(nameValue);</b>
+<b class="nc">&nbsp;        newSupplier.setPhoneNumber(phoneNumberValue);</b>
+<b class="nc">&nbsp;        newSupplier.setAddress(selectedCity);</b>
+<b class="nc">&nbsp;        newSupplier.setId_product(selectedProduct.getId_product()); // Assign the ID of the selected product</b>
+<b class="nc">&nbsp;        this.supplierDao.guardar(newSupplier);</b>
+&nbsp;
+<b class="nc">&nbsp;        ObservableList&lt;String&gt; supplierItems = chooseCity.getItems();</b>
+<b class="nc">&nbsp;        supplierItems.add(String.valueOf(newSupplier));</b>
+<b class="nc">&nbsp;        chooseCity.setItems(supplierItems);</b>
+&nbsp;
+<b class="nc">&nbsp;        name.clear();</b>
+<b class="nc">&nbsp;        phoneNumber.clear();</b>
+<b class="nc">&nbsp;        chooseCity.getSelectionModel().clearSelection();</b>
+<b class="nc">&nbsp;        chooseProduct.getSelectionModel().clearSelection();</b>
+&nbsp;
+<b class="nc">&nbsp;        Alert alert = new Alert(Alert.AlertType.INFORMATION);</b>
+<b class="nc">&nbsp;        alert.setTitle(&quot;Successful insertion&quot;);</b>
+<b class="nc">&nbsp;        alert.setHeaderText(null);</b>
+<b class="nc">&nbsp;        alert.setContentText(&quot;The provider has been inserted successfully.&quot;);</b>
+<b class="nc">&nbsp;        alert.showAndWait();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private List&lt;String&gt; getCitiesOfSpain() {
+&nbsp;        // You can obtain the cities from a database, file, or manually create a list
+<b class="nc">&nbsp;        return Arrays.asList(&quot;Madrid&quot;, &quot;Barcelona&quot;, &quot;Valencia&quot;, &quot;Sevilla&quot;, &quot;Zaragoza&quot;, &quot;Málaga&quot;, &quot;Murcia&quot;, &quot;Palma&quot;, &quot;Bilbao&quot;, &quot;Alicante&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void gotomenu(ActionEvent event) throws IOException {
+<b class="nc">&nbsp;        App.setRoot(&quot;inicio&quot;);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>

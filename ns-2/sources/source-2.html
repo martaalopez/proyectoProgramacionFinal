@@ -1,0 +1,246 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ClientController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.prueba100</a>
+</div>
+
+<h1>Coverage Summary for Class: ClientController (com.example.prueba100)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ClientController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/58)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.prueba100;
+&nbsp;
+&nbsp;import DAO.AdminDAO;
+&nbsp;import DAO.ClientDAO;
+&nbsp;import connections.ConnectionMySQL;
+&nbsp;import javafx.collections.FXCollections;
+&nbsp;import javafx.collections.ObservableList;
+&nbsp;import javafx.event.ActionEvent;
+&nbsp;import javafx.fxml.FXML;
+&nbsp;import javafx.fxml.Initializable;
+&nbsp;import javafx.scene.control.*;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.net.URL;
+&nbsp;import java.util.Optional;
+&nbsp;import java.util.ResourceBundle;
+&nbsp;
+<b class="nc">&nbsp;public class ClientController implements Initializable {</b>
+&nbsp;    @FXML
+&nbsp;    private Button btn_signup;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField txt_dni_up;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField txt_mail_up;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField txt_name_up;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField txt_number_up;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField txt_password_up;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField txt_username_up;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private ComboBox&lt;String&gt; type_up;
+&nbsp;
+&nbsp;    private ClientDAO clientDao;
+&nbsp;    private AdminDAO adminDao;
+&nbsp;
+<b class="nc">&nbsp;    private ConnectionMySQL conexionBD = new ConnectionMySQL();</b>
+&nbsp;
+<b class="nc">&nbsp;    private final String adminPassword = &quot;123&quot;;</b>
+&nbsp;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void goToInicio(ActionEvent event) throws IOException {
+<b class="nc">&nbsp;        App.setRoot(&quot;Login&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void goToOrder(ActionEvent event) throws IOException {
+<b class="nc">&nbsp;        App.setRoot(&quot;Login&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void initialize(URL location, ResourceBundle resources) {
+<b class="nc">&nbsp;        conexionBD.getConnect();</b>
+<b class="nc">&nbsp;        clientDao = new ClientDAO(conexionBD);</b>
+<b class="nc">&nbsp;        adminDao = new AdminDAO(conexionBD);</b>
+&nbsp;
+<b class="nc">&nbsp;        ObservableList&lt;String&gt; typeOptions = FXCollections.observableArrayList(&quot;admin&quot;, &quot;client&quot;);</b>
+<b class="nc">&nbsp;        type_up.setItems(typeOptions);</b>
+<b class="nc">&nbsp;        type_up.getSelectionModel().selectFirst();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void signUp(ActionEvent event) {
+<b class="nc">&nbsp;        String name = txt_name_up.getText();</b>
+<b class="nc">&nbsp;        int phoneNumber = Integer.parseInt(txt_number_up.getText());</b>
+<b class="nc">&nbsp;        String mail = txt_mail_up.getText();</b>
+<b class="nc">&nbsp;        String username = txt_username_up.getText();</b>
+<b class="nc">&nbsp;        String password = txt_password_up.getText();</b>
+<b class="nc">&nbsp;        String type = type_up.getValue();</b>
+<b class="nc">&nbsp;        String idClient = txt_dni_up.getText();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (type.equals(&quot;admin&quot;)) {</b>
+<b class="nc">&nbsp;            model.Admin admin = new model.Admin(idClient, name, mail, phoneNumber, password, username, type);</b>
+<b class="nc">&nbsp;            admin.setId_client(idClient);</b>
+<b class="nc">&nbsp;            admin.setType(type);</b>
+<b class="nc">&nbsp;            admin.setPassword(password);</b>
+<b class="nc">&nbsp;            admin.setUsername(username);</b>
+<b class="nc">&nbsp;            admin.setPhoneNumber(phoneNumber);</b>
+<b class="nc">&nbsp;            admin.setName(name);</b>
+&nbsp;
+<b class="nc">&nbsp;            showAdminPasswordDialog(admin);</b>
+<b class="nc">&nbsp;        } else {</b>
+<b class="nc">&nbsp;            model.Client client = new model.Client(idClient, name, mail, phoneNumber, password, username, type);</b>
+<b class="nc">&nbsp;            client.setId_client(idClient);</b>
+<b class="nc">&nbsp;            client.setType(type);</b>
+<b class="nc">&nbsp;            client.setPassword(password);</b>
+<b class="nc">&nbsp;            client.setUsername(username);</b>
+<b class="nc">&nbsp;            client.setPhoneNumber(phoneNumber);</b>
+<b class="nc">&nbsp;            client.setName(name);</b>
+&nbsp;
+<b class="nc">&nbsp;            if (clientDao.usernameExists(username)) {</b>
+<b class="nc">&nbsp;                showErrorDialog(&quot;The username is already available&quot;);</b>
+&nbsp;                return;
+&nbsp;            }
+&nbsp;
+<b class="nc">&nbsp;            clientDao.guardar(client);</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;    private void showErrorDialog(String message) {
+<b class="nc">&nbsp;        Alert alert = new Alert(Alert.AlertType.ERROR);</b>
+<b class="nc">&nbsp;        alert.setTitle(&quot;The username is already available&quot;);</b>
+<b class="nc">&nbsp;        alert.setHeaderText(null);</b>
+<b class="nc">&nbsp;        alert.setContentText(message);</b>
+<b class="nc">&nbsp;        alert.showAndWait();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    private void showAdminPasswordDialog(model.Admin admin) {
+<b class="nc">&nbsp;        TextInputDialog dialog = new TextInputDialog();</b>
+<b class="nc">&nbsp;        dialog.setTitle(&quot;Administrator password validation&quot;);</b>
+<b class="nc">&nbsp;        dialog.setHeaderText(null);</b>
+<b class="nc">&nbsp;        dialog.setContentText(&quot;Enter the admin password provided by the company:&quot;);</b>
+&nbsp;
+<b class="nc">&nbsp;        Optional&lt;String&gt; result = dialog.showAndWait();</b>
+<b class="nc">&nbsp;        result.ifPresent(password -&gt; {</b>
+<b class="nc">&nbsp;            if (password.equals(adminPassword)) {</b>
+&nbsp;
+<b class="nc">&nbsp;                AdminDAO adminDao = new AdminDAO(conexionBD);</b>
+<b class="nc">&nbsp;                adminDao.guardar(admin);</b>
+<b class="nc">&nbsp;            } else {</b>
+&nbsp;
+<b class="nc">&nbsp;                Alert alert = new Alert(Alert.AlertType.ERROR);</b>
+<b class="nc">&nbsp;                alert.setTitle(&quot;Admin password validation error&quot;);</b>
+<b class="nc">&nbsp;                alert.setHeaderText(null);</b>
+<b class="nc">&nbsp;                alert.setContentText(&quot;Wrong admin password&quot;);</b>
+<b class="nc">&nbsp;                alert.showAndWait();</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,215 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LoginController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.prueba100</a>
+</div>
+
+<h1>Coverage Summary for Class: LoginController (com.example.prueba100)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LoginController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/36)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.prueba100;
+&nbsp;
+&nbsp;import DAO.AdminDAO;
+&nbsp;import DAO.ClientDAO;
+&nbsp;import connections.ConnectionMySQL;
+&nbsp;import javafx.collections.FXCollections;
+&nbsp;import javafx.collections.ObservableList;
+&nbsp;import javafx.event.ActionEvent;
+&nbsp;import javafx.fxml.FXML;
+&nbsp;import javafx.fxml.FXMLLoader;
+&nbsp;import javafx.scene.Parent;
+&nbsp;import javafx.scene.Scene;
+&nbsp;import javafx.scene.control.*;
+&nbsp;import javafx.scene.layout.Pane;
+&nbsp;import org.controlsfx.control.Notifications;
+&nbsp;import util.Method;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;
+<b class="nc">&nbsp;public class LoginController {</b>
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private Pane shopView;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private Button btn_login;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private Label labelUser;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private PasswordField txt_password;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField txt_username;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private ComboBox&lt;String&gt; type_up;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private void initialize() {
+&nbsp;        // Initialize the type_up combo box with options
+<b class="nc">&nbsp;        ObservableList&lt;String&gt; typeOptions = FXCollections.observableArrayList(&quot;admin&quot;, &quot;client&quot;);</b>
+<b class="nc">&nbsp;        type_up.setItems(typeOptions);</b>
+<b class="nc">&nbsp;        type_up.getSelectionModel().selectFirst();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private void btnHomeValidate(ActionEvent event) throws IOException {
+&nbsp;        // Retrieve the entered username, password, and selected type
+<b class="nc">&nbsp;        String username = txt_username.getText();</b>
+<b class="nc">&nbsp;        String password = txt_password.getText();</b>
+<b class="nc">&nbsp;        String selectedType = type_up.getValue();</b>
+&nbsp;
+&nbsp;        // Establish a connection to the MySQL database
+<b class="nc">&nbsp;        ConnectionMySQL conexionBD = new ConnectionMySQL();</b>
+&nbsp;
+&nbsp;        try {
+<b class="nc">&nbsp;            if (selectedType.equalsIgnoreCase(&quot;admin&quot;)) {</b>
+&nbsp;                // Validate credentials in the &quot;admin&quot; table
+<b class="nc">&nbsp;                AdminDAO adminDAO = new AdminDAO(conexionBD);</b>
+<b class="nc">&nbsp;                boolean credencialesValidas = adminDAO.validarCredenciales(username, password);</b>
+<b class="nc">&nbsp;                if (credencialesValidas) {</b>
+&nbsp;                    // Username and password are correct for the admin
+<b class="nc">&nbsp;                    Notifications.create().title(Method.Constants.CORRECT).text(Method.Constants.CORRECT).showWarning();</b>
+<b class="nc">&nbsp;                    App.setRoot(&quot;Inicio&quot;);</b>
+&nbsp;                } else {
+&nbsp;                    // Incorrect username or password for the admin
+<b class="nc">&nbsp;                    Notifications.create().title(Method.Constants.INCORRECT).text(Method.Constants.INCORRECT).showWarning();</b>
+&nbsp;                }
+<b class="nc">&nbsp;            } else if (selectedType.equalsIgnoreCase(&quot;client&quot;)) {</b>
+&nbsp;                // Validate credentials in the &quot;client&quot; table
+<b class="nc">&nbsp;                ClientDAO clientDAO = new ClientDAO(conexionBD);</b>
+<b class="nc">&nbsp;                boolean credencialesValidas = clientDAO.validarCredenciales(username, password);</b>
+<b class="nc">&nbsp;                if (credencialesValidas) {</b>
+&nbsp;                    // Username and password are correct for the client
+<b class="nc">&nbsp;                    Notifications.create().title(Method.Constants.CORRECT).text(Method.Constants.CORRECT).showWarning();</b>
+&nbsp;
+&nbsp;                    // Load the FXML file of the ShopController
+<b class="nc">&nbsp;                    FXMLLoader shopLoader = new FXMLLoader(getClass().getResource(&quot;Shop.fxml&quot;));</b>
+<b class="nc">&nbsp;                    Parent shopRoot = shopLoader.load();</b>
+<b class="nc">&nbsp;                    ShopController shopController = shopLoader.getController();</b>
+<b class="nc">&nbsp;                    shopController.setUsername(username);</b>
+&nbsp;
+&nbsp;                    // Get the current scene and set the root as the ShopController
+<b class="nc">&nbsp;                    Scene scene = btn_login.getScene();</b>
+<b class="nc">&nbsp;                    scene.setRoot(shopRoot);</b>
+<b class="nc">&nbsp;                } else {</b>
+&nbsp;                    // Incorrect username or password for the client
+<b class="nc">&nbsp;                    Notifications.create().title(Method.Constants.INCORRECT).text(Method.Constants.INCORRECT).showWarning();</b>
+&nbsp;                }
+<b class="nc">&nbsp;            } else {</b>
+&nbsp;                // Invalid selected type
+<b class="nc">&nbsp;                Notifications.create().title(Method.Constants.INCORRECT).text(&quot;Tipo seleccionado no válido&quot;).showWarning();</b>
+&nbsp;            }
+<b class="nc">&nbsp;        } catch (Exception e) {</b>
+&nbsp;            // Exception handling
+<b class="nc">&nbsp;            e.printStackTrace(); // Optional: Print information about the exception</b>
+&nbsp;        } finally {
+&nbsp;            // Close the connection
+<b class="nc">&nbsp;            if (conexionBD != null) {</b>
+<b class="nc">&nbsp;                conexionBD.close();</b>
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void btnSignUp(ActionEvent event) throws IOException {
+<b class="nc">&nbsp;        App.setRoot(&quot;Orders&quot;);</b>
+&nbsp;    }
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>

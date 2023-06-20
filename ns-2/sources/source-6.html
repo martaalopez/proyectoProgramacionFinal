@@ -1,0 +1,197 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > RecordController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.prueba100</a>
+</div>
+
+<h1>Coverage Summary for Class: RecordController (com.example.prueba100)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RecordController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/28)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.prueba100;
+&nbsp;
+&nbsp;import DAO.Product_orderDAO;
+&nbsp;import connections.ConnectionMySQL;
+&nbsp;import javafx.beans.property.*;
+&nbsp;import javafx.collections.FXCollections;
+&nbsp;import javafx.collections.ObservableList;
+&nbsp;import javafx.event.ActionEvent;
+&nbsp;import javafx.fxml.FXML;
+&nbsp;import javafx.fxml.Initializable;
+&nbsp;import javafx.scene.control.TableColumn;
+&nbsp;import javafx.scene.control.TableView;
+&nbsp;import javafx.scene.control.TextField;
+&nbsp;import model.Product_order;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.net.URL;
+&nbsp;import java.sql.SQLException;
+&nbsp;import java.util.List;
+&nbsp;import java.util.ResourceBundle;
+&nbsp;
+<b class="nc">&nbsp;public class RecordController implements Initializable {</b>
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Product_order, Integer&gt; columnUnit;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Product_order, String&gt; columnidclient;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Product_order, Integer&gt; columnidorder;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Product_order, Integer&gt; columnidproduct;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TableView&lt;Product_order&gt; productTableView;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField search;
+&nbsp;
+<b class="nc">&nbsp;    private ConnectionMySQL conexionBD = new ConnectionMySQL();</b>
+&nbsp;    private Product_orderDAO product_orderDAO;
+<b class="nc">&nbsp;    private ObservableList&lt;Product_order&gt; listaProduct = FXCollections.observableArrayList();</b>
+<b class="nc">&nbsp;    private final ObjectProperty&lt;Product_order&gt; objProduct = new SimpleObjectProperty&lt;&gt;();</b>
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void goToInicio(ActionEvent event) throws IOException {
+<b class="nc">&nbsp;        App.setRoot(&quot;Inicio&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void initialize(URL url, ResourceBundle resourceBundle) {
+&nbsp;        // Set up cell value factories for table columns
+<b class="nc">&nbsp;        columnUnit.setCellValueFactory(param -&gt; new SimpleIntegerProperty(param.getValue().getId_product()).asObject());</b>
+<b class="nc">&nbsp;        columnidclient.setCellValueFactory(param -&gt; new SimpleStringProperty(param.getValue().getId_client()));</b>
+<b class="nc">&nbsp;        columnidorder.setCellValueFactory(param -&gt; new SimpleIntegerProperty(param.getValue().getUnitProduct()).asObject());</b>
+<b class="nc">&nbsp;        columnidproduct.setCellValueFactory(param -&gt; new SimpleIntegerProperty(param.getValue().getId_product()).asObject());</b>
+&nbsp;
+<b class="nc">&nbsp;        listarProduct(); // Fetch and populate the table with product records</b>
+<b class="nc">&nbsp;        productTableView.setItems(listaProduct);</b>
+<b class="nc">&nbsp;        objProduct.bind(productTableView.getSelectionModel().selectedItemProperty());</b>
+&nbsp;
+&nbsp;        // Add a listener to the search text field to filter orders based on the entered client name
+<b class="nc">&nbsp;        search.textProperty().addListener((observable, oldValue, newValue) -&gt; {</b>
+&nbsp;            try {
+<b class="nc">&nbsp;                filterOrders(newValue);</b>
+<b class="nc">&nbsp;            } catch (SQLException e) {</b>
+<b class="nc">&nbsp;                throw new RuntimeException(e);</b>
+<b class="nc">&nbsp;            }</b>
+&nbsp;        });
+&nbsp;    }
+&nbsp;
+&nbsp;    public void listarProduct() {
+&nbsp;        try {
+<b class="nc">&nbsp;            conexionBD.getConnect();</b>
+<b class="nc">&nbsp;            product_orderDAO = new Product_orderDAO(conexionBD);</b>
+<b class="nc">&nbsp;            listaProduct.setAll(product_orderDAO.getAll()); // Retrieve all product orders and store them in the observable list</b>
+<b class="nc">&nbsp;        } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;            ex.printStackTrace();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void searchOrder(ActionEvent event) throws SQLException {
+<b class="nc">&nbsp;        String clientName = search.getText();</b>
+<b class="nc">&nbsp;        filterOrders(clientName);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private void filterOrders(String clientName) throws SQLException {
+<b class="nc">&nbsp;        product_orderDAO = new Product_orderDAO(conexionBD);</b>
+<b class="nc">&nbsp;        List&lt;Product_order&gt; filteredOrders = product_orderDAO.getOrderByClientName(clientName); // Retrieve product orders by client name</b>
+<b class="nc">&nbsp;        listaProduct.setAll(filteredOrders); // Update the observable list with the filtered orders</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>

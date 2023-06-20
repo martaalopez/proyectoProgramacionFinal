@@ -1,0 +1,303 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Crud</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.prueba100</a>
+</div>
+
+<h1>Coverage Summary for Class: Crud (com.example.prueba100)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Crud</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/87)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.prueba100;
+&nbsp;
+&nbsp;import DAO.ProductDAO;
+&nbsp;import connections.ConnectionMySQL;
+&nbsp;import javafx.beans.property.*;
+&nbsp;import javafx.collections.FXCollections;
+&nbsp;import javafx.collections.ObservableList;
+&nbsp;import javafx.scene.control.*;
+&nbsp;import javafx.scene.layout.GridPane;
+&nbsp;import model.Product;
+&nbsp;import javafx.fxml.FXML;
+&nbsp;import javafx.fxml.Initializable;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.net.URL;
+&nbsp;import java.sql.SQLException;
+&nbsp;import java.util.ResourceBundle;
+&nbsp;
+&nbsp;import javafx.event.ActionEvent;
+&nbsp;import org.controlsfx.control.Notifications;
+&nbsp;
+<b class="nc">&nbsp;public class Crud implements Initializable {</b>
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Product, String&gt; columnDescription;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Product, Integer&gt; columnID;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Product, Integer&gt; columnUnit;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Product, Double&gt; columnSale;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Product, Double&gt; columnSupplier;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TableView&lt;Product&gt; productTableView;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private Button tbndelete;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private Button tbninsert;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField txtdescription;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField txtid;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField txtunit;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private Button tbnedit;
+&nbsp;    @FXML
+&nbsp;    private TextField txtSale;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private TextField txtSupplier;
+&nbsp;
+<b class="nc">&nbsp;    private ConnectionMySQL conexionBD=new ConnectionMySQL();</b>
+&nbsp;    private ProductDAO productDAO;
+<b class="nc">&nbsp;    ObservableList&lt;Product&gt; listaProduct= FXCollections.observableArrayList();</b>
+<b class="nc">&nbsp;    private final ObjectProperty&lt;Product&gt; objProduct=new SimpleObjectProperty&lt;&gt;();</b>
+&nbsp;    @FXML
+&nbsp;    void goToInicio(ActionEvent event) throws IOException {
+<b class="nc">&nbsp;        App.setRoot(&quot;Inicio&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void initialize(URL url, ResourceBundle resourceBundle) {
+<b class="nc">&nbsp;        columnID.setCellValueFactory(param -&gt; new SimpleIntegerProperty(param.getValue().getId_product()).asObject());</b>
+<b class="nc">&nbsp;        columnDescription.setCellValueFactory(param -&gt; new SimpleStringProperty(param.getValue().getDescription()));</b>
+<b class="nc">&nbsp;        columnUnit.setCellValueFactory(param -&gt; new SimpleIntegerProperty(param.getValue().getUnit()).asObject());</b>
+<b class="nc">&nbsp;        columnSale.setCellValueFactory(param -&gt; new SimpleDoubleProperty(param.getValue().getSale_price()).asObject());</b>
+<b class="nc">&nbsp;        columnSupplier.setCellValueFactory(param-&gt;new SimpleDoubleProperty(param.getValue().getSupplier_price()).asObject());</b>
+<b class="nc">&nbsp;        listarProduct();</b>
+<b class="nc">&nbsp;        productTableView.setItems(listaProduct);</b>
+&nbsp;        /*poder hacer validaciones*/
+<b class="nc">&nbsp;        objProduct.bind(productTableView.getSelectionModel().selectedItemProperty());</b>
+&nbsp;    }
+&nbsp;    @FXML
+&nbsp;    void Delete(ActionEvent event) throws SQLException {
+&nbsp;
+&nbsp;        /* hacemos una alerta */
+<b class="nc">&nbsp;        Alert a = new Alert(Alert.AlertType.CONFIRMATION, &quot;Do you want to delete the product?&quot;, ButtonType.YES, ButtonType.NO);</b>
+<b class="nc">&nbsp;        a.setHeaderText(this.objProduct.get().getDescription());</b>
+<b class="nc">&nbsp;        if (a.showAndWait().get() == ButtonType.YES) {</b>
+<b class="nc">&nbsp;            ConnectionMySQL.getConnect();</b>
+<b class="nc">&nbsp;            productDAO = new ProductDAO(conexionBD);</b>
+<b class="nc">&nbsp;            productDAO.eliminar(objProduct.get().getId_product());</b>
+<b class="nc">&nbsp;            listarProduct();</b>
+&nbsp;        }
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void Insert(ActionEvent event) {
+<b class="nc">&nbsp;        if (!txtid.getText().isEmpty() &amp;&amp; !txtdescription.getText().isEmpty() &amp;&amp; !txtunit.getText().isEmpty()) {</b>
+<b class="nc">&nbsp;            String idText = txtid.getText();</b>
+<b class="nc">&nbsp;            if (idText.matches(&quot;\\d{5}&quot;)) { // Verificar que el ID tenga exactamente 5 números</b>
+<b class="nc">&nbsp;                int id_product = Integer.parseInt(idText);</b>
+<b class="nc">&nbsp;                int unit = Integer.parseInt(txtunit.getText());</b>
+<b class="nc">&nbsp;                double salePrice = Double.parseDouble(txtSale.getText().replace(&quot;,&quot;, &quot;.&quot;)); // Reemplazar coma por punto</b>
+<b class="nc">&nbsp;                double supplierPrice = Double.parseDouble(txtSupplier.getText().replace(&quot;,&quot;, &quot;.&quot;)); // Reemplazar coma por punto</b>
+<b class="nc">&nbsp;                Product p = new Product();</b>
+<b class="nc">&nbsp;                p.setId_product(id_product);</b>
+<b class="nc">&nbsp;                p.setDescription(txtdescription.getText());</b>
+<b class="nc">&nbsp;                p.setUnit(unit);</b>
+<b class="nc">&nbsp;                p.setSale_price(salePrice);</b>
+<b class="nc">&nbsp;                p.setSupplier_price(supplierPrice);</b>
+<b class="nc">&nbsp;                this.conexionBD.getConnect();</b>
+<b class="nc">&nbsp;                productDAO = new ProductDAO(conexionBD);</b>
+<b class="nc">&nbsp;                productDAO.guardar(p);</b>
+<b class="nc">&nbsp;                listarProduct();</b>
+<b class="nc">&nbsp;            } else {</b>
+<b class="nc">&nbsp;                Notifications.create().title(&quot;Warning&quot;).text(&quot;The ID must contain exactly 5 numbers.&quot;).showWarning();</b>
+&nbsp;            }
+<b class="nc">&nbsp;        } else {</b>
+<b class="nc">&nbsp;            Notifications.create().title(&quot;Warning&quot;).text(&quot;Please complete all fields.&quot;).showWarning();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    public void listarProduct() {
+&nbsp;        try {
+<b class="nc">&nbsp;            this.conexionBD.getConnect();</b>
+<b class="nc">&nbsp;            productDAO = new ProductDAO(conexionBD);</b>
+<b class="nc">&nbsp;            listaProduct.setAll(productDAO.getAll());</b>
+<b class="nc">&nbsp;        } catch (SQLException ex) {</b>
+<b class="nc">&nbsp;            ex.printStackTrace();</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;    @FXML
+&nbsp;    void Edit(ActionEvent event) {
+&nbsp;
+&nbsp;        // Obtenemos el producto seleccionado de la tabla
+<b class="nc">&nbsp;        Product selectedProduct = objProduct.get();</b>
+&nbsp;        // Creamos una ventana para que el usuario pueda editar los valores del producto
+<b class="nc">&nbsp;        Dialog&lt;Product&gt; dialog = new Dialog&lt;&gt;();</b>
+<b class="nc">&nbsp;        dialog.setTitle(&quot;Edit&quot;);</b>
+<b class="nc">&nbsp;        dialog.setHeaderText(&quot;Enter the new product values:&quot;);</b>
+&nbsp;
+&nbsp;        // Creamos los campos de texto para que el usuario pueda ingresar los nuevos valores
+<b class="nc">&nbsp;        TextField idField = new TextField(String.valueOf(selectedProduct.getId_product()));</b>
+<b class="nc">&nbsp;        idField.setEditable(false);</b>
+<b class="nc">&nbsp;        TextField descriptionField = new TextField(selectedProduct.getDescription());</b>
+<b class="nc">&nbsp;        TextField unitField = new TextField(String.valueOf(selectedProduct.getUnit()));</b>
+<b class="nc">&nbsp;        TextField saleField = new TextField(String.valueOf(selectedProduct.getSale_price()));</b>
+<b class="nc">&nbsp;        TextField supplierField = new TextField(String.valueOf(selectedProduct.getSupplier_price()));</b>
+&nbsp;
+&nbsp;        // Agregamos los campos de texto a la ventana
+<b class="nc">&nbsp;        GridPane grid = new GridPane();</b>
+<b class="nc">&nbsp;        grid.add(new Label(&quot;ID:&quot;), 1, 1);</b>
+<b class="nc">&nbsp;        grid.add(idField, 2, 1);</b>
+<b class="nc">&nbsp;        grid.add(new Label(&quot;Description:&quot;), 1, 2);</b>
+<b class="nc">&nbsp;        grid.add(descriptionField, 2, 2);</b>
+<b class="nc">&nbsp;        grid.add(new Label(&quot;Unit:&quot;), 1, 3);</b>
+<b class="nc">&nbsp;        grid.add(unitField, 2, 3);</b>
+<b class="nc">&nbsp;        grid.add(new Label(&quot;Sale price:&quot;), 1, 4);</b>
+<b class="nc">&nbsp;        grid.add(saleField, 2, 4);</b>
+<b class="nc">&nbsp;        grid.add(new Label(</b>
+&nbsp;                &quot;supplier price:&quot;), 1, 5);
+<b class="nc">&nbsp;        grid.add(supplierField, 2, 5);</b>
+<b class="nc">&nbsp;        dialog.getDialogPane().setContent(grid);</b>
+&nbsp;
+&nbsp;        // Agregamos los botones de &quot;Guardar&quot; y &quot;Cancelar&quot;
+<b class="nc">&nbsp;        ButtonType saveButtonType = new ButtonType(&quot;Guardar&quot;, ButtonBar.ButtonData.OK_DONE);</b>
+<b class="nc">&nbsp;        dialog.getDialogPane().getButtonTypes().addAll(saveButtonType, ButtonType.CANCEL);</b>
+&nbsp;
+&nbsp;        // Cuando el usuario presiona el botón de &quot;Guardar&quot;, guardamos los cambios en la base de datos
+<b class="nc">&nbsp;        dialog.setResultConverter(dialogButton -&gt; {</b>
+<b class="nc">&nbsp;            if (dialogButton == saveButtonType) {</b>
+<b class="nc">&nbsp;                selectedProduct.setDescription(descriptionField.getText());</b>
+<b class="nc">&nbsp;                selectedProduct.setUnit(Integer.parseInt(unitField.getText()));</b>
+<b class="nc">&nbsp;                selectedProduct.setSale_price(Double.parseDouble(saleField.getText()));</b>
+<b class="nc">&nbsp;                selectedProduct.setSupplier_price(Double.parseDouble(supplierField.getText()));</b>
+&nbsp;                try {
+<b class="nc">&nbsp;                    this.conexionBD.getConnect();</b>
+<b class="nc">&nbsp;                    productDAO = new ProductDAO(conexionBD);</b>
+<b class="nc">&nbsp;                    productDAO.actualizar(selectedProduct);</b>
+<b class="nc">&nbsp;                    listarProduct();</b>
+<b class="nc">&nbsp;                } catch (Exception ex) {</b>
+<b class="nc">&nbsp;                    ex.printStackTrace();</b>
+<b class="nc">&nbsp;                    Notifications.create().title(&quot;Warning&quot;).text(&quot;Error trying to save&quot;).showError();</b>
+<b class="nc">&nbsp;                }</b>
+&nbsp;            }
+<b class="nc">&nbsp;            return null;</b>
+&nbsp;        });
+&nbsp;
+<b class="nc">&nbsp;        dialog.showAndWait();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>

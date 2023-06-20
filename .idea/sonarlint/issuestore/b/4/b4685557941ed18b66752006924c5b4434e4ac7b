@@ -1,0 +1,23 @@
+
+r	java:S117B"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜æ˜Ïøÿÿÿÿ8»Šˆó‹1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ä”òª8¼Šˆó‹1
+l
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ˆ·Ş8œáıŒ1
+q
+java:S2095E"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œÖÅœúÿÿÿÿ8œáıŒ1
+q
+java:S2095R"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ñû°øÿÿÿÿ8œáıŒ1
+£
+java:S1186]"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¤î„„üÿÿÿÿ8ÉŠˆó‹1
+
+java:S1186f"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(©éÑr8ÊŠˆó‹1
+R
+java:S2209"5Change this instance-reference to a static reference.(ˆ·Ş8¢œáıŒ1
+W
+java:S22090"5Change this instance-reference to a static reference.(øìöïıÿÿÿÿ8¥œáıŒ1
+W
+java:S2209E"5Change this instance-reference to a static reference.(œÖÅœúÿÿÿÿ8¨œáıŒ1
+W
+java:S2209R"5Change this instance-reference to a static reference.(ñû°øÿÿÿÿ8©œáıŒ1
+J
+java:S1068"(Remove this unused "conn" private field.(´¤´‚ıÿÿÿÿ8ÕŠˆó‹1

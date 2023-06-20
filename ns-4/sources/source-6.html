@@ -1,0 +1,183 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > Supplier</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">model</a>
+</div>
+
+<h1>Coverage Summary for Class: Supplier (model)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Supplier</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    86,7%
+  </span>
+  <span class="absValue">
+    (13/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    90,5%
+  </span>
+  <span class="absValue">
+    (19/21)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package model;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public class Supplier {
+&nbsp;    private int id_supplier;
+&nbsp;    private String name;
+&nbsp;    private String address;
+&nbsp;    private String phoneNumber;
+&nbsp;    private Integer id_product;
+&nbsp;
+<b class="fc">&nbsp;    private List&lt;Product&gt; products = null;</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;    public Supplier(int id_supplier, String name, String address, String phoneNumber, int id_product) {</b>
+<b class="fc">&nbsp;        this.id_supplier = id_supplier;</b>
+<b class="fc">&nbsp;        this.name = name;</b>
+<b class="fc">&nbsp;        this.address = address;</b>
+<b class="fc">&nbsp;        this.phoneNumber = phoneNumber;</b>
+<b class="fc">&nbsp;        this.id_product = id_product;</b>
+&nbsp;
+&nbsp;
+&nbsp;    }
+&nbsp;
+&nbsp;    public Supplier() {
+<b class="nc">&nbsp;        this(0, &quot;&quot;, &quot;&quot;, &quot;&quot;, 0);</b>
+&nbsp;
+&nbsp;    }
+&nbsp;
+<b class="nc">&nbsp;    public Supplier(String name, String address, String phoneNumber) {</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getId_supplier() {
+<b class="fc">&nbsp;        return id_supplier;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setId_supplier(int id_supplier) {
+<b class="fc">&nbsp;        this.id_supplier = id_supplier;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getName() {
+<b class="fc">&nbsp;        return name;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setName(String name) {
+<b class="fc">&nbsp;        this.name = name;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getAddress() {
+<b class="fc">&nbsp;        return address;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setAddress(String address) {
+<b class="fc">&nbsp;        this.address = address;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getPhoneNumber() {
+<b class="fc">&nbsp;        return phoneNumber;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPhoneNumber(String phoneNumber) {
+<b class="fc">&nbsp;        this.phoneNumber = phoneNumber;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Integer getId_product() {
+<b class="fc">&nbsp;        return id_product;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setId_product(Integer id_product) {
+<b class="fc">&nbsp;        this.id_product = id_product;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;Product&gt; getProducts() {
+<b class="fc">&nbsp;        return products;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setProducts(List&lt;Product&gt; products) {
+<b class="fc">&nbsp;        this.products = products;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>

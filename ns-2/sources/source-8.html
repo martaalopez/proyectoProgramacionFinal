@@ -1,0 +1,316 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > ShopController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.example.prueba100</a>
+</div>
+
+<h1>Coverage Summary for Class: ShopController (com.example.prueba100)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ShopController</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    0%
+  </span>
+  <span class="absValue">
+    (0/85)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.example.prueba100;
+&nbsp;
+&nbsp;import DAO.ClientDAO;
+&nbsp;import DAO.ProductDAO;
+&nbsp;import DAO.Product_orderDAO;
+&nbsp;import connections.ConnectionMySQL;
+&nbsp;import javafx.beans.property.ObjectProperty;
+&nbsp;import javafx.beans.property.SimpleObjectProperty;
+&nbsp;import javafx.collections.FXCollections;
+&nbsp;import javafx.collections.ObservableList;
+&nbsp;import javafx.event.ActionEvent;
+&nbsp;import javafx.fxml.FXML;
+&nbsp;import javafx.fxml.FXMLLoader;
+&nbsp;import javafx.fxml.Initializable;
+&nbsp;import javafx.scene.Parent;
+&nbsp;import javafx.scene.control.*;
+&nbsp;import javafx.scene.control.cell.PropertyValueFactory;
+&nbsp;import model.Client;
+&nbsp;import model.Product;
+&nbsp;import model.Product_order;
+&nbsp;
+&nbsp;import java.io.IOException;
+&nbsp;import java.net.URL;
+&nbsp;import java.sql.SQLException;
+&nbsp;import java.util.Random;
+&nbsp;import java.util.ResourceBundle;
+<b class="nc">&nbsp;public class ShopController implements Initializable {</b>
+<b class="nc">&nbsp;    private boolean orderInProgress = false; // Track if an order is already in progress</b>
+<b class="nc">&nbsp;    private int orderId = 0;</b>
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    private Button finish;
+&nbsp;    @FXML
+&nbsp;    private ComboBox&lt;Product&gt; productCombo;
+&nbsp;    @FXML
+&nbsp;    private ComboBox&lt;Integer&gt; txtUnidades; // Changed to ComboBox&lt;Integer&gt;
+&nbsp;    @FXML
+&nbsp;    private Button add;
+&nbsp;    @FXML
+&nbsp;    private Label txt_username;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Product_order, Integer&gt; colidProduct;
+&nbsp;    @FXML
+&nbsp;    private TableColumn&lt;Product_order, Integer&gt; colunidades;
+&nbsp;    @FXML
+&nbsp;    private Button goToMenu;
+&nbsp;    @FXML
+&nbsp;    private TableView&lt;Product_order&gt; tablaProductos;
+&nbsp;    @FXML
+&nbsp;    private TextField idClientText;
+&nbsp;
+<b class="nc">&nbsp;    private ConnectionMySQL conexionBD = new ConnectionMySQL();</b>
+&nbsp;    private ObservableList&lt;Product_order&gt; cart;
+<b class="nc">&nbsp;    private final ObjectProperty&lt;Product&gt; objOrder = new SimpleObjectProperty&lt;&gt;();</b>
+<b class="nc">&nbsp;    private final ObjectProperty&lt;Client&gt; objClient = new SimpleObjectProperty&lt;&gt;();</b>
+<b class="nc">&nbsp;    ObservableList&lt;Product&gt; listaOrder = FXCollections.observableArrayList();</b>
+&nbsp;
+&nbsp;    private ClientDAO clientDAO; // Add the ClientDAO object to the controller
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public void initialize(URL location, ResourceBundle resources) {
+<b class="nc">&nbsp;        colidProduct.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;id_product&quot;));</b>
+<b class="nc">&nbsp;        colunidades.setCellValueFactory(new PropertyValueFactory&lt;&gt;(&quot;unitProduct&quot;));</b>
+&nbsp;        // Configure the username Label
+<b class="nc">&nbsp;        txt_username.setText(&quot;&quot;); // Establecer un valor inicial vacío</b>
+&nbsp;
+&nbsp;        try {
+<b class="nc">&nbsp;            conexionBD.getConnect();</b>
+<b class="nc">&nbsp;            ProductDAO productDAO = new ProductDAO(conexionBD);</b>
+<b class="nc">&nbsp;            ObservableList&lt;Product&gt; productList = FXCollections.observableArrayList(productDAO.getAll());</b>
+<b class="nc">&nbsp;            productCombo.setItems(productList);</b>
+&nbsp;
+<b class="nc">&nbsp;            clientDAO = new ClientDAO(conexionBD); // Initialize the ClientDAO object</b>
+&nbsp;
+&nbsp;            // Configure the username Label
+<b class="nc">&nbsp;            txt_username.setText(&quot;&quot;); // Establecer un valor inicial vacío</b>
+&nbsp;
+&nbsp;            // Configure numbers 1 to 10 in the txtUnidades ComboBox
+<b class="nc">&nbsp;            ObservableList&lt;Integer&gt; unidadesList = FXCollections.observableArrayList();</b>
+<b class="nc">&nbsp;            for (int i = 1; i &lt;= 10; i++) {</b>
+<b class="nc">&nbsp;                unidadesList.add(i);</b>
+&nbsp;            }
+<b class="nc">&nbsp;            txtUnidades.setItems(unidadesList);</b>
+&nbsp;
+<b class="nc">&nbsp;            Random random = new Random();</b>
+<b class="nc">&nbsp;            orderId = random.nextInt(1000);  // Generate a random order ID</b>
+<b class="nc">&nbsp;        } catch (SQLException e) {</b>
+<b class="nc">&nbsp;            throw new RuntimeException(e);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+<b class="nc">&nbsp;        cart = FXCollections.observableArrayList();</b>
+<b class="nc">&nbsp;        tablaProductos.setItems(cart);</b>
+&nbsp;
+&nbsp;        // Bind the selectedItemProperty of the table view to the objOrder property
+<b class="nc">&nbsp;        tablaProductos.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -&gt; {</b>
+<b class="nc">&nbsp;            if (newValue != null) {</b>
+<b class="nc">&nbsp;                objOrder.set(newValue.getProduct());</b>
+&nbsp;            }
+&nbsp;        });
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void addToCart(ActionEvent event) throws SQLException {
+<b class="nc">&nbsp;        Random random = new Random();</b>
+<b class="nc">&nbsp;        orderId = generateRandomOrderId();</b>
+&nbsp;        // Get selected product and quantity
+<b class="nc">&nbsp;        Product selectedProduct = productCombo.getSelectionModel().getSelectedItem();</b>
+<b class="nc">&nbsp;        Integer unitOrder = txtUnidades.getValue(); // Get the selected value from the ComboBox</b>
+&nbsp;
+<b class="nc">&nbsp;        String idClient = idClientText.getText();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (unitOrder == null) {</b>
+<b class="nc">&nbsp;            Alert alert = new Alert(Alert.AlertType.ERROR, &quot;Quantity and Order ID cannot be empty.&quot;, ButtonType.OK);</b>
+<b class="nc">&nbsp;            alert.showAndWait();</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;        // Check if the product already exists in the cart
+<b class="nc">&nbsp;        for (Product_order order : cart) {</b>
+<b class="nc">&nbsp;            if (order.getId_product() == selectedProduct.getId_product()) {</b>
+<b class="nc">&nbsp;                Alert alert = new Alert(Alert.AlertType.ERROR, &quot;Product already added to the cart.&quot;, ButtonType.OK);</b>
+<b class="nc">&nbsp;                alert.showAndWait();</b>
+&nbsp;                return;
+&nbsp;            }
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+&nbsp;        // Create a new Product_order object
+<b class="nc">&nbsp;        Product_order newOrder = new Product_order();</b>
+<b class="nc">&nbsp;        newOrder.setId_product(selectedProduct.getId_product());</b>
+<b class="nc">&nbsp;        newOrder.setUnitProduct(unitOrder);</b>
+<b class="nc">&nbsp;        newOrder.setId_client(idClient);</b>
+<b class="nc">&nbsp;        newOrder.setId_order(orderId);  // Set the order ID for the product</b>
+&nbsp;
+<b class="nc">&nbsp;        cart.add(newOrder);</b>
+&nbsp;
+&nbsp;        // Save the new object to the database
+<b class="nc">&nbsp;        Product_orderDAO product_orderDAO = new Product_orderDAO(conexionBD);</b>
+<b class="nc">&nbsp;        product_orderDAO.guardar(newOrder);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void finishOrder(ActionEvent event) {
+<b class="nc">&nbsp;        if (cart.isEmpty()) {</b>
+<b class="nc">&nbsp;            Alert alert = new Alert(Alert.AlertType.ERROR, &quot;Cart is empty.&quot;, ButtonType.OK);</b>
+<b class="nc">&nbsp;            alert.showAndWait();</b>
+&nbsp;            return;
+&nbsp;        }
+&nbsp;
+&nbsp;        // Generate a unique random ID for the order
+<b class="nc">&nbsp;        orderId = generateRandomOrderId();</b>
+&nbsp;
+&nbsp;        // Assign the random ID to each product in the cart
+<b class="nc">&nbsp;        for (Product_order order : cart) {</b>
+<b class="nc">&nbsp;            order.setId_order(orderId);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;
+&nbsp;        // Reset values and clear the cart
+<b class="nc">&nbsp;        cart.clear();</b>
+<b class="nc">&nbsp;        productCombo.getSelectionModel().clearSelection();</b>
+<b class="nc">&nbsp;        txtUnidades.getSelectionModel().clearSelection();</b>
+<b class="nc">&nbsp;        orderInProgress = false;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    private int generateRandomOrderId() {
+&nbsp;        // Generate a unique random ID for the order only if there is no order in progress
+<b class="nc">&nbsp;        if (!orderInProgress) {</b>
+<b class="nc">&nbsp;            Random random = new Random();</b>
+<b class="nc">&nbsp;            orderId = random.nextInt(1000000); // Range of random IDs</b>
+<b class="nc">&nbsp;            orderInProgress = true;</b>
+&nbsp;        }
+&nbsp;
+<b class="nc">&nbsp;        return orderId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void goToMenu(ActionEvent event) throws IOException {
+<b class="nc">&nbsp;        App.setRoot(&quot;Login&quot;);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setUsername(String username) {
+<b class="nc">&nbsp;        System.out.println(&quot;Setting username: &quot; + username);</b>
+<b class="nc">&nbsp;        txt_username.setText(username);</b>
+&nbsp;        try {
+<b class="nc">&nbsp;            idClientText.setText(clientDAO.getClientNameByUsername(username));</b>
+<b class="nc">&nbsp;        } catch (SQLException e) {</b>
+<b class="nc">&nbsp;            throw new RuntimeException(e);</b>
+<b class="nc">&nbsp;        }</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @FXML
+&nbsp;    void deleteProduct(ActionEvent event) throws SQLException {
+<b class="nc">&nbsp;        Product_order selectedProduct = tablaProductos.getSelectionModel().getSelectedItem();</b>
+&nbsp;
+<b class="nc">&nbsp;        if (selectedProduct != null) {</b>
+<b class="nc">&nbsp;            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION, &quot;Do you want to delete the product?&quot;, ButtonType.YES, ButtonType.NO);</b>
+<b class="nc">&nbsp;            confirmationAlert.setHeaderText(String.valueOf(selectedProduct.getId_product()));</b>
+&nbsp;
+&nbsp;
+<b class="nc">&nbsp;            if (confirmationAlert.showAndWait().orElse(ButtonType.NO) == ButtonType.YES) {</b>
+<b class="nc">&nbsp;                Product_orderDAO product_orderDAO = new Product_orderDAO(conexionBD);</b>
+<b class="nc">&nbsp;                product_orderDAO.eliminar(selectedProduct.getId_product());</b>
+<b class="nc">&nbsp;                cart.remove(selectedProduct);</b>
+&nbsp;            }
+<b class="nc">&nbsp;        } else {</b>
+<b class="nc">&nbsp;            Alert alert = new Alert(Alert.AlertType.ERROR, &quot;No product selected.&quot;, ButtonType.OK);</b>
+<b class="nc">&nbsp;            alert.showAndWait();</b>
+&nbsp;        }
+&nbsp;    }
+&nbsp;
+&nbsp;}
+&nbsp;
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-06-20 12:16</div>
+</div>
+</body>
+</html>
