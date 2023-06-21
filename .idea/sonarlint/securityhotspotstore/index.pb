@@ -1,37 +1,28 @@
 
 ]
 -src/main/java/connections/ConnectionData.java,6\5\6548df1eface28e4af176f33bcc63caf2f4391a6
-O
-src/main/java/DAO/AdminDAO.java,3\1\313df99efaf61729130f48af3a35a1b93977e48c
 J
 src/main/java/DAO/DAO.java,9\f\9f39ec83ce0fb6186446d4cafb50dca6191a0c88
 N
 src/main/java/util/Method.java,9\e\9eaaa8777d44451e385155aa51c499bbfe22ad94
-f
-6src/main/java/com/example/prueba100/SupplierCheck.java,7\7\7767070d8ccda594759ef750d3587f154f17f2cf
-^
-.src/main/java/com/example/prueba100/Sales.java,5\a\5a5b7ad669338484cfccdfb1bd88cd0a71e26f23
-i
-9src/main/java/com/example/prueba100/ClientController.java,f\2\f2df201e79e7860f60f79073205d0e93799e4cd8
-N
-src/main/java/model/Admin.java,2\a\2a8af0e7500c60890bbb75ce444c327cfb2fa4f6
-]
--src/main/java/com/example/prueba100/Menu.java,8\c\8ca205c31730ab5359430f1f82fcb0cf229d1a14
 P
  src/main/java/DAO/ClientDAO.java,3\0\3066eeb4c59902f9a3f8c6b63659ed1578f35dd3
-V
-&src/main/java/model/Product_order.java,7\f\7f5e592fc6f227b896c6f4fd580bdc7e93f90c28
-W
-'src/main/java/DAO/Product_orderDAO.java,8\6\86434f7affd77c906c05928b2c98b816c4809070
 R
 "src/main/java/DAO/SupplierDAO.java,b\4\b4685557941ed18b66752006924c5b4434e4ac7b
-Q
-!src/main/java/DAO/ProductDAO.java,6\b\6bb3c1c851c4b91cf013e331e747f3c29e7b39ca
-g
-7src/main/java/com/example/prueba100/ShopController.java,4\4\448c10f3ec9d5b21d54b02aad5dc74b8ae887bd1
-i
-9src/main/java/com/example/prueba100/RecordController.java,e\5\e5f9dccf02afe4b1c6d56580da46692d9d90cd6a
-h
-8src/main/java/com/example/prueba100/LoginController.java,6\8\685bad2c79b969f7f5e222e0a0ff4591a56eb373
 O
 src/main/java/model/Person.java,d\e\de79464f0bdf6673dba8ecb903704c783d5ec95a
+P
+ src/main/java/model/Product.java,0\6\06c2a30bdf9271d833924cab83b8653e90c1ec08
+Q
+!src/main/java/DAO/ProductDAO.java,6\b\6bb3c1c851c4b91cf013e331e747f3c29e7b39ca
+W
+'src/main/java/DAO/Product_orderDAO.java,8\6\86434f7affd77c906c05928b2c98b816c4809070
+:
+
+.gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+Q
+!src/main/java/model/Supplier.java,0\1\01e6fd69b8b342837b8c0cd510276f6e331ce86c
+T
+$src/test/java/model/ProductTest.java,5\5\55d214aeb8335918817b3063c85cae833940e7e1
+U
+%src/test/java/model/SupplierTest.java,f\8\f84053229b826b5f031975cfff50b66dd8fc4b2b

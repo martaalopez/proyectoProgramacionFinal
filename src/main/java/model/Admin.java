@@ -44,7 +44,6 @@ public class Admin extends Person {
             this.adminDAO = new AdminDAO(conexionBD);
         } catch (Exception e) {
             e.printStackTrace();
-            // Manejar la excepción, por ejemplo, mostrar un mensaje de error o lanzar una excepción personalizada
         }
     }
     public Admin(ConnectionMySQL connection) {
@@ -55,6 +54,5 @@ public class Admin extends Person {
 
    @Override
     public void imprimirInformacion() {
-        // Implementación de imprimirInformacion
     }
 }

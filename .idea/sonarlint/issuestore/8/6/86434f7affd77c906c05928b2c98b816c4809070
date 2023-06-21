@@ -1,28 +1,15 @@
 
-r	java:S117P"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ò¡Éúÿÿÿÿ8Í’åıŒ1
-n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ä¤‘‹øÿÿÿÿ8¼ŸÚğ‹1
+n	java:S101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(ä¤‘‹øÿÿÿÿ8Şƒ¯Ä1
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ä”òª8¿ŸÚğ‹1
-q
-java:S2095!"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Œ³Î—øÿÿÿÿ8¡¡Úğ‹1
 l
-java:S2095#"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(­ƒ8¡¡Úğ‹1
+java:S2095#"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(­ƒ8…¯Ä1
 m
-java:S2095š"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(©Ù§8¡¡Úğ‹1
+java:S2095“"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(©Ù§8…¯Ä1
 q
-java:S2095S"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(œÖÅœúÿÿÿÿ8âŞãıŒ1
+java:S2095!"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Œ³Î—øÿÿÿÿ8…¯Ä1
 T
-java:S2589("7Remove this expression which always evaluates to "true"(¡ææú8¢¡Úğ‹1
-R
-java:S2209"5Change this instance-reference to a static reference.(çÙ—8¬¡Úğ‹1
-W
-java:S2209?"5Change this instance-reference to a static reference.(æøÌ—ÿÿÿÿÿ8µ¡Úğ‹1
-W
-java:S2209S"5Change this instance-reference to a static reference.(œÖÅœúÿÿÿÿ8¿¡Úğ‹1
-W
-java:S2209r"5Change this instance-reference to a static reference.(Ã¥†ûÿÿÿÿ8ğŞãıŒ1
+java:S2589("7Remove this expression which always evaluates to "true"(¡ææú8…¯Ä1
 [
-java:S1117"8Rename "conn" which hides the field declared at line 20.(şöì¦ùÿÿÿÿ8Ë¡Úğ‹1
-X
-java:S2209“"5Change this instance-reference to a static reference.(ßü®™ùÿÿÿÿ8Ì¡Úğ‹1
+java:S1117‡"8Rename "conn" which hides the field declared at line 20.(şöì¦ùÿÿÿÿ8·…¯Ä1
 N
-java:S1068",Remove this unused "FINDBYID" private field.(”“•ùÿÿÿÿ8Ğ¡Úğ‹1
+java:S1068",Remove this unused "FINDBYID" private field.(”“•ùÿÿÿÿ8»…¯Ä1
